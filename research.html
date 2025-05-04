@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - Academic Profile</title>
+    <style>
+        :root {
+            --primary: #004080;
+            --secondary: #0066cc;
+            --light: #f8f9fa;
+            --accent: #e6f0ff;
+            --text: #333;
+            --nav-bg: #f1f1f1;
+        }
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav {
+            background-color: white;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        .menu-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-links li {
+            margin: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary);
+            white-space: nowrap;
+            display: block;
+            padding: 5px 0;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+            display: none;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+            background: none;
+            border: none;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        .page-title {
+            color: #004080;
+            border-bottom: 2px solid #004080;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        .research-area {
+            margin-bottom: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .research-area h2 {
+            color: #004080;
+            margin-top: 0;
+        }
+        .research-area p {
+            line-height: 1.6;
+        }
+        .project {
+            margin-top: 20px;
+            padding-left: 20px;
+            border-left: 3px solid #004080;
+        }
+        .project h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .project-meta {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        footer {
+            background-color: #004080;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 40px;
+        }
+
+        /* Base responsive breakpoints */
+         @media (max-width: 992px) {
+            .menu-links li:nth-child(n+5) {
+                display: none;
+            }
+            .dropdown {
+                display: block;
+            }
+             .bio-section {
+                flex-direction: column-reverse;
+                align-items: center;
+            }
+            .bio-right {
+                position: static;
+                margin-bottom: 40px;
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-links li:nth-child(n+4) {
+                display: none;
+            }
+             .hero {
+                padding: 60px 0;
+            }
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            .research-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .menu-links li:nth-child(n+3) {
+                display: none;
+            }
+             .container {
+                padding: 30px 15px;
+            }
+            .hero {
+                padding: 40px 0;
+            }
+            .hero h1 {
+                font-size: 1.8em;
+            }
+            .section-title {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .menu-links li:nth-child(n+2) {
+                display: none;
+            }
+             .header-container {
+                height: 60px;
+            }
+            .logo {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .menu-links {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            nav.responsive .menu-links {
+                display: flex;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                flex-direction: column;
+                background-color: white;
+                gap: 0;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                min-width: 200px;
+                z-index: 2;
+                border-radius: 4px;
+            }
+            nav.responsive .menu-links li {
+                display: block;
+            }
+            nav.responsive .menu-links a {
+                padding: 12px 20px;
+                border-bottom: 1px solid #eee;
+            }
+            .dropdown {
+                display: none;
+            }
+            nav.responsive .dropdown {
+                display: none;
+            }
+        }
+    </style>
+<header>
+    <div class="header-container">
+        <a href="index.html" class="logo">Dr. Your Name</a>
+        <nav>
+            <div class="menu-container">
+                <ul class="menu-links">
+                  <li><a href="index.html">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="conferences.html">Conferences</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="CV.html">CV</a></li>
+                </ul>
+                <div class="dropdown">
+                    <button class="dropdown-button" onclick="toggleDropdown()">⋮</button>
+                    <div class="dropdown-content" id="menuDropdown">
+                        </div>
+                </div>
+            </div>
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <h1 class="page-title">Research</h1>
+    
+    <div class="research-area">
+        <h2>Artificial Intelligence & Machine Learning</h2>
+        <p>My research focuses on developing robust and explainable AI systems that can learn from limited data and perform reliably in real-world scenarios. I work on both theoretical foundations and practical applications of machine learning.</p>
+        
+        <div class="project">
+            <h3>Deep Learning for Natural Language Understanding</h3>
+            <div class="project-meta">2023 - Present | Funded by National Science Foundation</div>
+            <p>This project investigates advanced transformer architectures for improved language understanding with reduced computational requirements. We focus on developing models that can comprehend context and nuance in human language while being accessible for deployment on edge devices.</p>
+        </div>
+        
+        <div class="project">
+            <h3>Explainable AI for Healthcare Decision Support</h3>
+            <div class="project-meta">2021 - Present | Collaboration with University Medical Center</div>
+            <p>We are developing interpretable machine learning models that assist medical professionals in diagnostic processes while providing clear explanations for their recommendations. This work aims to bridge the gap between high-performance black-box models and the need for transparency in critical healthcare applications.</p>
+        </div>
+    </div>
+    
+    <div class="research-area">
+        <h2>Data Science & Computational Methods</h2>
+        <p>My work in data science focuses on developing novel computational methods for analyzing complex, high-dimensional data across multiple domains.</p>
+        
+        <div class="project">
+            <h3>Bayesian Methods for Uncertainty Quantification</h3>
+            <div class="project-meta">2022 - Present | Industry Partnership</div>
+            <p>This research explores advanced Bayesian techniques for accurately quantifying uncertainty in machine learning predictions. Applications include risk assessment in financial modeling and reliability engineering.</p>
+        </div>
+        
+        <div class="project">
+            <h3>Large-Scale Graph Neural Networks</h3>
+            <div class="project-meta">2020 - 2023 | Multi-University Collaboration</div>
+            <p>We developed scalable graph neural network architectures capable of learning from massive network datasets with billions of nodes and edges. This work has applications in social network analysis, protein interaction networks, and recommendation systems.</p>
+        </div>
+    </div>
+    
+    <div class="research-area">
+        <h2>Interdisciplinary Applications</h2>
+        <p>I believe in the power of AI to transform other scientific disciplines and tackle pressing societal challenges.</p>
+        
+        <div class="project">
+            <h3>AI for Climate Science</h3>
+            <div class="project-meta">2023 - Present | International Research Initiative</div>
+            <p>This project applies deep learning to climate data for improved prediction of extreme weather events and better understanding of climate change patterns. We work closely with climate scientists to ensure our models respect physical constraints and domain knowledge.</p>
+        </div>
+        
+        <div class="project">
+            <h3>Computational Social Science</h3>
+            <div class="project-meta">2021 - Present | Cross-Disciplinary Collaboration</div>
+            <p>We are developing computational methods to analyze large-scale social data, including social media interactions, mobility patterns, and economic indicators, to better understand complex social phenomena and inform policy decisions.</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 Academic Profile. All rights reserved.</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const nav = document.querySelector('nav');
+        nav.classList.toggle('responsive');
+    }
+    
+    function toggleDropdown() {
+        const dropdown = document.querySelector('.dropdown');
+        dropdown.classList.toggle('active');
+    }
+    
+    // Function to manage which menu items are visible and which are in dropdown
+    function updateMenuItems() {
+        const menuLinks = document.querySelectorAll('.menu-links li');
+        const dropdownContent = document.getElementById('menuDropdown');
+        
+        // Clear the dropdown
+        dropdownContent.innerHTML = '';
+        
+        // Check which items are hidden and add them to dropdown
+        menuLinks.forEach((item, index) => {
+            if (window.getComputedStyle(item).display === 'none') {
+                const link = item.querySelector('a').cloneNode(true);
+                dropdownContent.appendChild(link);
+            }
+        });
+        
+        // Hide dropdown if no items are in it
+        const dropdown = document.querySelector('.dropdown');
+        if (dropdownContent.children.length === 0) {
+            dropdown.style.display = 'none';
+        } else {
+            dropdown.style.display = 'block';
+        }
+    }
+    
+    // Run on load and on window resize
+    window.addEventListener('load', updateMenuItems);
+    window.addEventListener('resize', updateMenuItems);
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.querySelector('.dropdown');
+        const dropdownButton = document.querySelector('.dropdown-button');
+        
+        if (!dropdown.contains(event.target) && event.target !== dropdownButton) {
+            dropdown.classList.remove('active');
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Profile | Computational Chemistry</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+       :root {
+            --primary: #004080;
+            --secondary: #0066cc;
+            --light: #f8f9fa;
+            --accent: #e6f0ff;
+            --text: #333;
+            --nav-bg: #f1f1f1;
+        }
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav {
+            background-color: white;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        .menu-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-links li {
+            margin: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary);
+            white-space: nowrap;
+            display: block;
+            padding: 5px 0;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+            display: none;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+            background: none;
+            border: none;
+        }
+
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        /* Bio Section */
+        .bio-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .bio-left {
+            flex: 2;
+        }
+        
+        .bio-left h2 {
+            font-size: 2em;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .bio-tags {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        
+        .tag {
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .bio-left p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            text-align: justify;
+        }
+        
+        .bio-right {
+            flex: 1;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .profile-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .profile-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--accent);
+        }
+        
+        .profile-card h3 {
+            color: var(--primary);
+            font-size: 1.4em;
+            margin-bottom: 5px;
+        }
+        
+        .profile-card p {
+            color: var(--text);
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            color: var(--primary);
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Research Focus */
+        .section-title {
+            font-size: 1.8em;
+            color: var(--primary);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .research-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .research-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .research-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .research-content {
+            padding: 20px;
+        }
+        
+        .research-content h3 {
+            font-size: 1.3em;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .research-content p {
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+        
+        /* Key Publications */
+        .publications-list {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 60px;
+        }
+        
+        .publication-item {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .publication-item:last-child {
+            border-bottom: none;
+        }
+        
+        .publication-item h3 {
+            font-size: 1.2em;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .publication-item p {
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+        
+        .publication-meta {
+            font-size: 0.9em;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .pub-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .pub-link:hover {
+            text-decoration: underline;
+        }
+        
+        .publication-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-btn {
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .publication-tags {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .publication-tag {
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        /* Footer */
+         footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-section p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .contact-info {
+            margin-bottom: 20px;
+        }
+        
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+            font-size: 0.9em;
+        }
+        
+        /* Base responsive breakpoints */
+        @media (max-width: 992px) {
+            .menu-links li:nth-child(n+5) {
+                display: none;
+            }
+            .dropdown {
+                display: block;
+            }
+            .bio-section {
+                flex-direction: column-reverse;
+                align-items: center;
+            }
+            .bio-right {
+                position: static;
+                margin-bottom: 40px;
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-links li:nth-child(n+4) {
+                display: none;
+            }
+            .hero {
+                padding: 60px 0;
+            }
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            .research-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .menu-links li:nth-child(n+3) {
+                display: none;
+            }
+            .container {
+                padding: 30px 15px;
+            }
+            .hero {
+                padding: 40px 0;
+            }
+            .hero h1 {
+                font-size: 1.8em;
+            }
+            .section-title {
+                font-size: 1.5em;
+            }
+        }
+        
+        @media (max-width: 450px) {
+            .menu-links li:nth-child(n+2) {
+                display: none;
+            }
+            .header-container {
+                height: 60px;
+            }
+            .logo {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .menu-links {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            nav.responsive .menu-links {
+                display: flex;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                flex-direction: column;
+                background-color: white;
+                gap: 0;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                min-width: 200px;
+                z-index: 2;
+                border-radius: 4px;
+            }
+            nav.responsive .menu-links li {
+                display: block;
+            }
+            nav.responsive .menu-links a {
+                padding: 12px 20px;
+                border-bottom: 1px solid #eee;
+            }
+            .dropdown {
+                display: none;
+            }
+            nav.responsive .dropdown {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <a href="index.html" class="logo">Dr. Your Name</a>
+        <nav>
+            <div class="menu-container">
+                <ul class="menu-links">
+                  <li><a href="index.html">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="conferences.html">Conferences</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="CV.html">CV</a></li>
+                </ul>
+                <div class="dropdown">
+                    <button class="dropdown-button" onclick="toggleDropdown()">⋮</button>
+                    <div class="dropdown-content" id="menuDropdown">
+                        <!-- Items will be dynamically added here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-container">
+        <h1>Advancing Computational Chemistry & Atomistic Simulations</h1>
+        <p>Exploring molecular interactions, material properties, and chemical reactions through high-performance computing and advanced simulation techniques</p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="bio-section">
+        <div class="bio-left">
+            <h2>About My Research</h2>
+            <div class="bio-tags">
+                <span class="tag">Computational Chemistry</span>
+                <span class="tag">Molecular Dynamics</span>
+                <span class="tag">Quantum Chemistry</span>
+                <span class="tag">Materials Simulation</span>
+                <span class="tag">Force Field Development</span>
+                <span class="tag">High-Performance Computing</span>
+            </div>
+            <p>
+                I am a research scholar specializing in computational chemistry and atomistic simulations, applying theoretical and computational methods to solve complex chemical problems. My research combines quantum mechanics, molecular dynamics, and machine learning approaches to investigate molecular interactions, predict material properties, and simulate chemical reactions with atomic-level precision.
+            </p>
+            <p>
+                Through high-performance computing and advanced simulation techniques, my work bridges the gap between theoretical models and experimental observations, providing molecular-level insights that are challenging to obtain through experimental methods alone. I am passionate about developing novel computational methodologies that enhance our understanding of chemical phenomena and accelerate the discovery of new materials and compounds.
+            </p>
+            <p>
+                My laboratory collaborates with experimental groups worldwide, combining computational predictions with laboratory validation to address challenges in materials science, catalysis, drug discovery, and energy storage.
+            </p>
+        </div>
+        <div class="bio-right">
+            <div class="profile-card">
+                <img src="profile.png" alt="Your Name">
+                <h3>Dr. Your Name</h3>
+                <p>Research Scholar in Computational Chemistry</p>
+                <p><i class="fas fa-university"></i> University Department</p>
+                <div class="social-icons">
+                    <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://scholar.google.com/citations?user=yourID" target="_blank"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank"><i class="fab fa-orcid"></i></a>
+                    <a href="https://www.researchgate.net/profile/Your_Profile" target="_blank"><i class="fab fa-researchgate"></i></a>
+                    <a href="https://www.linkedin.com/in/yourprofile/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title">Research Focus</h2>
+    <div class="research-grid">
+        <div class="research-card">
+            <div class="research-image">
+                <img src="/api/placeholder/400/320" alt="Molecular Dynamics Simulation">
+            </div>
+            <div class="research-content">
+                <h3>Molecular Dynamics Simulations</h3>
+                <p>Investigating dynamic behavior of complex molecular systems through large-scale atomistic simulations.</p>
+            </div>
+        </div>
+        
+        <div class="research-card">
+            <div class="research-image">
+                <img src="/api/placeholder/400/320" alt="Quantum Chemistry Calculations">
+            </div>
+            <div class="research-content">
+                <h3>Quantum Chemistry Methods</h3>
+                <p>Applying ab initio and DFT calculations to understand electronic structure and reactivity.</p>
+            </div>
+        </div>
+        
+        <div class="research-card">
+            <div class="research-image">
+                <img src="/api/placeholder/400/320" alt="Machine Learning for Chemistry">
+            </div>
+            <div class="research-content">
+                <h3>ML-Driven Molecular Modeling</h3>
+                <p>Developing machine learning approaches to accelerate simulations and predict molecular properties.</p>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title">Key Publications</h2>
+    
+    <div class="publication-filters">
+        <button class="filter-btn active" data-filter="all">All Publications</button>
+        <button class="filter-btn" data-filter="journal">Journal Articles</button>
+        <button class="filter-btn" data-filter="book">Book Chapters</button>
+        <button class="filter-btn" data-filter="preprint">Preprints</button>
+    </div>
+    
+    <div class="publications-list">
+        <div class="publication-item" data-type="journal">
+            <h3>Novel Force Field Development for Metal-Organic Frameworks Using Quantum Mechanical Calculations</h3>
+            <p>An innovative approach for creating accurate force fields for simulating MOF materials based on high-level QM calculations.</p>
+            <div class="publication-meta">
+                <span><i class="fas fa-book-open"></i> Journal of Computational Chemistry, 2024</span>
+                <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
+                <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
+            </div>
+            <div class="publication-tags">
+                <span class="publication-tag">Force Fields</span>
+                <span class="publication-tag">MOFs</span>
+                <span class="publication-tag">Quantum Mechanics</span>
+            </div>
+        </div>
+        
+        <div class="publication-item" data-type="journal">
+            <h3>Machine Learning Potential for Reactive Dynamics of Catalytic Processes</h3>
+            <p>A machine learning approach that enables accurate and efficient simulations of chemical reactions for heterogeneous catalysis.</p>
+            <div class="publication-meta">
+                <span><i class="fas fa-book-open"></i> Nature Computational Science, 2023</span>
+                <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
+                <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
+            </div>
+            <div class="publication-tags">
+                <span class="publication-tag">Machine Learning</span>
+                <span class="publication-tag">Catalysis</span>
+                <span class="publication-tag">Reactive Dynamics</span>
+            </div>
+        </div>
+        
+        <div class="publication-item" data-type="book">
+            <h3>Multi-Scale Modeling of Photocatalytic Water Splitting on Semiconductor Surfaces</h3>
+            <p>An integrated computational framework combining quantum mechanics and molecular dynamics to simulate photocatalytic reactions.</p>
+            <div class="publication-meta">
+                <span><i class="fas fa-book-open"></i> ACS Catalysis, 2022</span>
+                <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
+                <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
+            </div>
+            <div class="publication-tags">
+                <span class="publication-tag">Photocatalysis</span>
+                <span class="publication-tag">Multi-scale Modeling</span>
+                <span class="publication-tag">Water Splitting</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <footer>
+    <p>&copy; 2025 Professor Name | University of Research</p>
+</footer>
+
+
+<script>
+    function toggleMenu() {
+        const nav = document.querySelector('nav');
+        nav.classList.toggle('responsive');
+    }
+    
+    function toggleDropdown() {
+        const dropdown = document.querySelector('.dropdown');
+        dropdown.classList.toggle('active');
+    }
+    
+    // Function to manage which menu items are visible and which are in dropdown
+    function updateMenuItems() {
+        const menuLinks = document.querySelectorAll('.menu-links li');
+        const dropdownContent = document.getElementById('menuDropdown');
+        
+        // Clear the dropdown
+        dropdownContent.innerHTML = '';
+        
+        // Check which items are hidden and add them to dropdown
+        menuLinks.forEach((item, index) => {
+            if (window.getComputedStyle(item).display === 'none') {
+                const link = item.querySelector('a').cloneNode(true);
+                const li = document.createElement('li');
+                li.appendChild(link);
+                dropdownContent.appendChild(link);
+            }
+        });
+        
+        // Hide dropdown if no items are in it
+        const dropdown = document.querySelector('.dropdown');
+        if (dropdownContent.children.length === 0) {
+            dropdown.style.display = 'none';
+        } else {
+            dropdown.style.display = 'block';
+        }
+    }
+    
+    // Publication filtering
+    function setupFilters() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const publications = document.querySelectorAll('.publication-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                
+                // Show/hide publications based on filter
+                publications.forEach(publication => {
+                    if (filter === 'all' || publication.getAttribute('data-type') === filter) {
+                        publication.style.display = 'block';
+                    } else {
+                        publication.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+    
+    // Run on load and on window resize
+    window.addEventListener('load', function() {
+        updateMenuItems();
+        setupFilters();
+    });
+    window.addEventListener('resize', updateMenuItems);
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.querySelector('.dropdown');
+        const dropdownButton = document.querySelector('.dropdown-button');
+        
+        if (!dropdown.contains(event.target) && event.target !== dropdownButton) {
+            dropdown.classList.remove('active');
+        }
+    });
+</script>
+
+</body>
+</html>

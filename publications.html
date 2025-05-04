@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - Academic Profile</title>
+    <style>
+         :root {
+            --primary: #004080;
+            --secondary: #0066cc;
+            --light: #f8f9fa;
+            --accent: #e6f0ff;
+            --text: #333;
+            --nav-bg: #f1f1f1;
+        }
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav {
+            background-color: white;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        .menu-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-links li {
+            margin: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary);
+            white-space: nowrap;
+            display: block;
+            padding: 5px 0;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+            display: none;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+            background: none;
+            border: none;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        .page-title {
+            color: #004080;
+            border-bottom: 2px solid #004080;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        .header-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .publication-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .sorting-options {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .scholar-link {
+            display: inline-flex;
+            align-items: center;
+            background-color: #4285F4;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .scholar-link:hover {
+            background-color: #3367D6;
+        }
+        .scholar-link img {
+            margin-right: 8px;
+            height: 20px;
+        }
+        .sort-select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background-color: white;
+            cursor: pointer;
+        }
+        .filter-btn {
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #004080;
+            color: white;
+        }
+        .publication-year {
+            margin-bottom: 30px;
+        }
+        .publication-year h2 {
+            color: #004080;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        .publication {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .publication-title {
+            font-weight: bold;
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .publication-authors {
+            font-style: italic;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .publication-venue {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        .publication-links {
+            display: flex;
+            gap: 15px;
+        }
+        .publication-link {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #f1f1f1;
+            color: #004080;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .publication-link:hover {
+            background-color: #ddd;
+        }
+        .publication-tags {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .publication-tag {
+            background-color: #e6f0ff;
+            color: #004080;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        footer {
+            background-color: #004080;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 40px;
+        }
+
+        /* Base responsive breakpoints */
+        @media (max-width: 992px) {
+            .menu-links li:nth-child(n+5) {
+                display: none;
+            }
+            .dropdown {
+                display: block;
+            }
+             .bio-section {
+                flex-direction: column-reverse;
+                align-items: center;
+            }
+            .bio-right {
+                position: static;
+                margin-bottom: 40px;
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-links li:nth-child(n+4) {
+                display: none;
+            }
+             .hero {
+                padding: 60px 0;
+            }
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            .research-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .menu-links li:nth-child(n+3) {
+                display: none;
+            }
+             .container {
+                padding: 30px 15px;
+            }
+            .hero {
+                padding: 40px 0;
+            }
+            .hero h1 {
+                font-size: 1.8em;
+            }
+            .section-title {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .menu-links li:nth-child(n+2) {
+                display: none;
+            }
+             .header-container {
+                height: 60px;
+            }
+            .logo {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .menu-links {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            nav.responsive .menu-links {
+                display: flex;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                flex-direction: column;
+                background-color: white;
+                gap: 0;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                min-width: 200px;
+                z-index: 2;
+                border-radius: 4px;
+            }
+            nav.responsive .menu-links li {
+                display: block;
+            }
+            nav.responsive .menu-links a {
+                padding: 12px 20px;
+                border-bottom: 1px solid #eee;
+            }
+            .dropdown {
+                display: none;
+            }
+            nav.responsive .dropdown {
+                display: none;
+            }
+        }
+    </style>
+<header>
+    <div class="header-container">
+        <a href="index.html" class="logo">Dr. Your Name</a>
+        <nav>
+            <div class="menu-container">
+                <ul class="menu-links">
+                  <li><a href="index.html">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="conferences.html">Conferences</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="CV.html">CV</a></li>
+                </ul>
+                <div class="dropdown">
+                    <button class="dropdown-button" onclick="toggleDropdown()">⋮</button>
+                    <div class="dropdown-content" id="menuDropdown">
+                        </div>
+                </div>
+            </div>
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <h1 class="page-title">Publications</h1>
+    
+    <div class="header-actions">
+        <div class="publication-filters">
+            <button class="filter-btn active" data-filter="all">All Publications</button>
+            <button class="filter-btn" data-filter="journal">Journal Articles</button>
+            <button class="filter-btn" data-filter="book">Book Chapters</button>
+            <button class="filter-btn" data-filter="preprint">Preprints</button>
+        </div>
+        
+        <div class="sorting-options">
+            <select class="sort-select" id="yearSort">
+                <option value="desc">Newest First</option>
+                <option value="asc">Oldest First</option>
+            </select>
+            
+            <a href="https://scholar.google.com/citations?user=YOUR_ID" class="scholar-link" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+                    <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+                </svg>
+                Google Scholar
+            </a>
+        </div>
+    </div>
+    
+    <div id="publications-container">
+        <div class="publication-year" data-year="2025">
+            <h2>2025</h2>
+            
+            <div class="publication" data-type="journal" data-year="2025">
+                <h3 class="publication-title">Transformer-Based Deep Learning Models for Efficient Natural Language Understanding in Resource-Constrained Environments</h3>
+                <div class="publication-authors">Your Name, Co-author Name, Another Co-author</div>
+                <div class="publication-venue">Journal of Artificial Intelligence Research, 2025</div>
+                <div class="publication-links">
+                    <a href="#" class="publication-link">PDF</a>
+                    <a href="#" class="publication-link">Code</a>
+                    <a href="#" class="publication-link">Dataset</a>
+                    <a href="#" class="publication-link">DOI</a>
+                </div>
+                <div class="publication-tags">
+                    <span class="publication-tag">Natural Language Processing</span>
+                    <span class="publication-tag">Deep Learning</span>
+                    <span class="publication-tag">Transformer Models</span>
+                </div>
+            </div>
+            
+            <div class="publication" data-type="preprint" data-year="2025">
+                <h3 class="publication-title">Explainable Decision Support Systems for Medical Diagnostics: A Comprehensive Survey</h3>
+                <div class="publication-authors">Your Name, Collaborator Name</div>
+                <div class="publication-venue">arXiv preprint arXiv:2503.12345, 2025</div>
+                <div class="publication-links">
+                    <a href="#" class="publication-link">PDF</a>
+                    <a href="#" class="publication-link">arXiv</a>
+                </div>
+                <div class="publication-tags">
+                    <span class="publication-tag">Explainable AI</span>
+                    <span class="publication-tag">Healthcare</span>
+                    <span class="publication-tag">Survey</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="publication-year" data-year="2024">
+            <h2>2024</h2>
+            
+            <div class="publication" data-type="journal" data-year="2024">
+                <h3 class="publication-title">Bayesian Neural Networks for Uncertainty Quantification in Financial Risk Assessment</h3>
+                <div class="publication-authors">Co-author Name, Your Name, Third Author</div>
+                <div class="publication-venue">Journal of Machine Learning Research, Vol. 25, pp. 1-35, 2024</div>
+                <div class="publication-links">
+                    <a href="#" class="publication-link">PDF</a>
+                    <a href="#" class="publication-link">Code</a>
+                    <a href="#" class="publication-link">DOI</a>
+                </div>
+                <div class="publication-tags">
+                    <span class="publication-tag">Bayesian Methods</span>
+                    <span class="publication-tag">Finance</span>
+                    <span class="publication-tag">Uncertainty Quantification</span>
+                </div>
+            </div>
+            
+            <div class="publication" data-type="book" data-year="2024">
+                <h3 class="publication-title">Advances in Machine Learning for Climate Science</h3>
+                <div class="publication-authors">Editor Name, Editor Name (Eds.), Chapter 7: "Deep Learning for Extreme Weather Prediction" by Your Name, Co-author Name</div>
+                <div class="publication-venue">Springer Nature, 2024</div>
+                <div class="publication-links">
+                    <a href="#" class="publication-link">Link</a>
+                    <a href="#" class="publication-link">DOI</a>
+                </div>
+                <div class="publication-tags">
+                    <span class="publication-tag">Climate Science</span>
+                    <span class="publication-tag">Book Chapter</span>
+                    <span class="publication-tag">Weather Prediction</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="publication-year" data-year="2023">
+            <h2>2023</h2>
+            
+            <div class="publication" data-type="journal" data-year="2023">
+                <h3 class="publication-title">Interpretable Machine Learning for Healthcare: Challenges and Opportunities</h3>
+                <div class="publication-authors">Your Name, Medical Collaborator, Technical Collaborator</div>
+                <div class="publication-venue">Nature Machine Intelligence, Vol. 5, pp. 123-135, 2023</div>
+                <div class="publication-links">
+                    <a href="#" class="publication-link">PDF</a>
+                    <a href="#" class="publication-link">DOI</a>
+                </div>
+                <div class="publication-tags">
+                    <span class="publication-tag">Interpretable ML</span>
+                    <span class="publication-tag">Healthcare</span>
+                    <span class="publication-tag">Ethical AI</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 Academic Profile. All rights reserved.</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const nav = document.querySelector('nav');
+        nav.classList.toggle('responsive');
+    }
+    
+    function toggleDropdown() {
+        const dropdown = document.querySelector('.dropdown');
+        dropdown.classList.toggle('active');
+    }
+    
+    // Function to manage which menu items are visible and which are in dropdown
+    function updateMenuItems() {
+        const menuLinks = document.querySelectorAll('.menu-links li');
+        const dropdownContent = document.getElementById('menuDropdown');
+        
+        // Clear the dropdown
+        dropdownContent.innerHTML = '';
+        
+        // Check which items are hidden and add them to dropdown
+        menuLinks.forEach((item, index) => {
+            if (window.getComputedStyle(item).display === 'none') {
+                const link = item.querySelector('a').cloneNode(true);
+                dropdownContent.appendChild(link);
+            }
+        });
+        
+        // Hide dropdown if no items are in it
+        const dropdown = document.querySelector('.dropdown');
+        if (dropdownContent.children.length === 0) {
+            dropdown.style.display = 'none';
+        } else {
+            dropdown.style.display = 'block';
+        }
+    }
+    
+    // Publication filtering
+    function setupFilters() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const publications = document.querySelectorAll('.publication');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                
+                // Show/hide publications based on filter
+                publications.forEach(publication => {
+                    if (filter === 'all' || publication.getAttribute('data-type') === filter) {
+                        publication.style.display = 'block';
+                    } else {
+                        publication.style.display = 'none';
+                    }
+                });
+                
+                // Check if any publications are visible in each year section
+                document.querySelectorAll('.publication-year').forEach(yearSection => {
+                    const visiblePublications = Array.from(yearSection.querySelectorAll('.publication')).filter(pub => 
+                        pub.style.display !== 'none'
+                    );
+                    
+                    yearSection.style.display = visiblePublications.length > 0 ? 'block' : 'none';
+                });
+            });
+        });
+    }
+    
+    // Year-wise sorting function
+    function setupSorting() {
+        const sortSelect = document.getElementById('yearSort');
+        const publicationsContainer = document.getElementById('publications-container');
+        
+        sortSelect.addEventListener('change', function() {
+            const yearSections = Array.from(document.querySelectorAll('.publication-year'));
+            const sortOrder = this.value;
+            
+            // Sort year sections
+            yearSections.sort((a, b) => {
+                const yearA = parseInt(a.getAttribute('data-year'));
+                const yearB = parseInt(b.getAttribute('data-year'));
+                
+                if (sortOrder === 'asc') {
+                    return yearA - yearB;
+                } else {
+                    return yearB - yearA;
+                }
+            });
+            
+            // Remove all year sections from container
+            yearSections.forEach(section => {
+                publicationsContainer.removeChild(section);
+            });
+            
+            // Add sorted year sections back to container
+            yearSections.forEach(section => {
+                publicationsContainer.appendChild(section);
+            });
+        });
+    }
+    
+    // Run on load and on window resize
+    window.addEventListener('load', function() {
+        updateMenuItems();
+        setupFilters();
+        setupSorting();
+    });
+    window.addEventListener('resize', updateMenuItems);
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.querySelector('.dropdown');
+        const dropdownButton = document.querySelector('.dropdown-button');
+        
+        if (!dropdown.contains(event.target) && event.target !== dropdownButton) {
+            dropdown.classList.remove('active');
+        }
+    });
+</script>
+
+</body>
+</html>
