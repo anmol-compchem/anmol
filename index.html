@@ -321,14 +321,15 @@
         }
         
         .research-image {
-            height: 180px;
+            width: 100%;
             overflow: hidden;
-        }
+            border-bottom: 1px solid #eee;        }
         
         .research-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block; 
         }
         
         .research-content {
@@ -619,15 +620,15 @@
 
 <header>
     <div class="header-container">
-        <a href="index.html" class="logo">Dr. Your Name</a>
+        <a href="index.html" class="logo">Anmol</a>
         <nav>
             <div class="menu-container">
                 <ul class="menu-links">
                   <li><a href="index.html">Home</a></li>
             <li><a href="research.html">Research</a></li>
             <li><a href="publications.html">Publications</a></li>
-            <li><a href="conferences.html">Conferences</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
+           <!-- <li><a href="conferences.html">Conferences</a></li>
+            <li><a href="gallery.html">Gallery</a></li> -->
             <li><a href="contact.html">Contact</a></li>
             <li><a href="CV.html">CV</a></li>
                 </ul>
@@ -657,10 +658,8 @@
             <div class="bio-tags">
                 <span class="tag">Computational Chemistry</span>
                 <span class="tag">Molecular Dynamics</span>
-                <span class="tag">Quantum Chemistry</span>
-                <span class="tag">Materials Simulation</span>
-                <span class="tag">Force Field Development</span>
-                <span class="tag">High-Performance Computing</span>
+                <span class="tag">Enhanced Sampling</span>
+                <span class="tag">Machine Learning</span>
             </div>
             <p>
                 I am a research scholar specializing in computational chemistry and atomistic simulations, applying theoretical and computational methods to solve complex chemical problems. My research combines quantum mechanics, molecular dynamics, and machine learning approaches to investigate molecular interactions, predict material properties, and simulate chemical reactions with atomic-level precision.
@@ -668,32 +667,29 @@
             <p>
                 Through high-performance computing and advanced simulation techniques, my work bridges the gap between theoretical models and experimental observations, providing molecular-level insights that are challenging to obtain through experimental methods alone. I am passionate about developing novel computational methodologies that enhance our understanding of chemical phenomena and accelerate the discovery of new materials and compounds.
             </p>
-            <p>
-                My laboratory collaborates with experimental groups worldwide, combining computational predictions with laboratory validation to address challenges in materials science, catalysis, drug discovery, and energy storage.
-            </p>
         </div>
         <div class="bio-right">
             <div class="profile-card">
-                <img src="profile.png" alt="Your Name">
-                <h3>Dr. Your Name</h3>
+                <img src="images/profile.png" alt="Anmol">
+                <h3>Anmol</h3>
                 <p>Research Scholar in Computational Chemistry</p>
-                <p><i class="fas fa-university"></i> University Department</p>
+                <p><i class="fas fa-university"></i> Indian Institute of Technology Delhi</p>
                 <div class="social-icons">
-                    <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://scholar.google.com/citations?user=yourID" target="_blank"><i class="fas fa-graduation-cap"></i></a>
-                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank"><i class="fab fa-orcid"></i></a>
+                    <a href="https://github.com/anmol-compchem" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://scholar.google.com/citations?user=sMwC6hIAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i></a>
+                    <!--<a href="https://orcid.org/0000-0000-0000-0000" target="_blank"><i class="fab fa-orcid"></i></a>
                     <a href="https://www.researchgate.net/profile/Your_Profile" target="_blank"><i class="fab fa-researchgate"></i></a>
-                    <a href="https://www.linkedin.com/in/yourprofile/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.linkedin.com/in/yourprofile/" target="_blank"><i class="fab fa-linkedin-in"></i></a>-->
                 </div>
             </div>
         </div>
     </div>
 
-    <h2 class="section-title">Research Focus</h2>
+    <h2 class="section-title">Research Highlights</h2>
     <div class="research-grid">
         <div class="research-card">
             <div class="research-image">
-                <img src="/api/placeholder/400/320" alt="Molecular Dynamics Simulation">
+                <img src="./images/TOC_ES.png" alt="Exp">
             </div>
             <div class="research-content">
                 <h3>Molecular Dynamics Simulations</h3>
@@ -703,7 +699,7 @@
         
         <div class="research-card">
             <div class="research-image">
-                <img src="/api/placeholder/400/320" alt="Quantum Chemistry Calculations">
+                <img src="./images/TOC_2.png" alt="Quantum Chemistry Calculations">
             </div>
             <div class="research-content">
                 <h3>Quantum Chemistry Methods</h3>
@@ -711,7 +707,7 @@
             </div>
         </div>
         
-        <div class="research-card">
+        <!--<div class="research-card">
             <div class="research-image">
                 <img src="/api/placeholder/400/320" alt="Machine Learning for Chemistry">
             </div>
@@ -719,7 +715,7 @@
                 <h3>ML-Driven Molecular Modeling</h3>
                 <p>Developing machine learning approaches to accelerate simulations and predict molecular properties.</p>
             </div>
-        </div>
+        </div>-->
     </div>
 
     <h2 class="section-title">Key Publications</h2>
@@ -727,7 +723,7 @@
     <div class="publication-filters">
         <button class="filter-btn active" data-filter="all">All Publications</button>
         <button class="filter-btn" data-filter="journal">Journal Articles</button>
-        <button class="filter-btn" data-filter="book">Book Chapters</button>
+        <!--<button class="filter-btn" data-filter="book">Book Chapters</button>-->
         <button class="filter-btn" data-filter="preprint">Preprints</button>
     </div>
     
@@ -780,7 +776,7 @@
 </div>
 
   <footer>
-    <p>&copy; 2025 Professor Name | University of Research</p>
+    <p>&copy; Anmol | IIT Delhi</p>
 </footer>
 
 
