@@ -178,6 +178,7 @@
         }
         .research-area p {
             line-height: 1.6;
+            text-align: justify; /* Added text-align: justify for the research area paragraphs */
         }
         .project {
             margin-top: 20px;
@@ -192,6 +193,9 @@
             font-style: italic;
             color: #666;
             margin-bottom: 10px;
+        }
+        .project p {
+            text-align: justify; /* Added text-align: justify for project paragraphs */
         }
         footer {
             background-color: #004080;
@@ -303,7 +307,7 @@
     </style>
 <header>
     <div class="header-container">
-        <a href="index.html" class="logo">Dr. Your Name</a>
+        <a href="index.html" class="logo">Anmol</a>
         <nav>
             <div class="menu-container">
                 <ul class="menu-links">
@@ -330,23 +334,26 @@
     <h1 class="page-title">Research</h1>
     
     <div class="research-area">
-        <h2>Artificial Intelligence & Machine Learning</h2>
-        <p>My research focuses on developing robust and explainable AI systems that can learn from limited data and perform reliably in real-world scenarios. I work on both theoretical foundations and practical applications of machine learning.</p>
+        <h2>Machine Learning Potentials for Atomistic Systems.</h2>
+        <p>My research focuses on the use of machine learning potentials augmented with enhanced sampling simulations for atomistic systems and condensed phase reactive systems.</p>
         
         <div class="project">
-            <h3>Deep Learning for Natural Language Understanding</h3>
-            <div class="project-meta">2023 - Present | Funded by National Science Foundation</div>
-            <p>This project investigates advanced transformer architectures for improved language understanding with reduced computational requirements. We focus on developing models that can comprehend context and nuance in human language while being accessible for deployment on edge devices.</p>
+            <h3>Chemical Reaction Modelling in Explicit Solvent.</h3>
+            <!--<div class="project-meta">2023 - Present | Funded by National Science Foundation</div>-->
+            <p>We have used a deep learning-based active learning strategy to develop ab initio level accurate machine-learned (ML) potential for a solution-phase reactive system. Using this ML potential, we carried out enhanced sampling simulations to sample the reaction process efficiently. Multiple transitions between the reactant and product states allowed us to calculate the converged free energy surface for the reaction. 
+                As a prototypical example, we have investigated the Menshutkin reaction, a classic bimolecular nucleophilic substitution reaction (SN2) in aqueous medium. 
+                Our analyses revealed that water stabilizes the ionic product state by enhanced solvation, facilitating the reaction and making it more spontaneous. 
+                Our approach expands the scope of studying the chemical reaction under realistic conditions, such as explicit solvents at finite temperatures, closely mimicking experiments.</p>
         </div>
         
-        <div class="project">
+        <!--<div class="project">
             <h3>Explainable AI for Healthcare Decision Support</h3>
             <div class="project-meta">2021 - Present | Collaboration with University Medical Center</div>
             <p>We are developing interpretable machine learning models that assist medical professionals in diagnostic processes while providing clear explanations for their recommendations. This work aims to bridge the gap between high-performance black-box models and the need for transparency in critical healthcare applications.</p>
-        </div>
+        </div>-->
     </div>
     
-    <div class="research-area">
+    <!--<div class="research-area">
         <h2>Data Science & Computational Methods</h2>
         <p>My work in data science focuses on developing novel computational methods for analyzing complex, high-dimensional data across multiple domains.</p>
         
@@ -378,11 +385,11 @@
             <div class="project-meta">2021 - Present | Cross-Disciplinary Collaboration</div>
             <p>We are developing computational methods to analyze large-scale social data, including social media interactions, mobility patterns, and economic indicators, to better understand complex social phenomena and inform policy decisions.</p>
         </div>
-    </div>
+    </div>-->
 </div>
 
 <footer>
-    <p>© 2025 Academic Profile. All rights reserved.</p>
+    <p>Anmol | IIT Delhi</p>
 </footer>
 
 <script>

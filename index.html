@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -165,16 +166,30 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
+            color: #004080;
             padding: 80px 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3; /* Default transparency */
+            z-index: 0;
         }
         
         .hero-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
         
         .hero h1 {
@@ -267,6 +282,23 @@
             margin-bottom: 15px;
             font-size: 1em;
         }
+
+        .institution {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .institution img {
+            width: 30px;
+            height: 30px;
+            border-radius: 0;
+            object-fit: contain;
+            margin: 0;
+            border: none;
+        }
         
         .social-icons {
             display: flex;
@@ -276,20 +308,36 @@
         }
         
         .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    /* Remove these two lines to hide the circular background */
+    /* background-color: var(--accent); */
+    /* color: var(--primary); */
+    transition: all 0.3s;
+}
+
+.social-icons a:hover {
+    /* Change this as well since we're not using a background color anymore */
+    /* background-color: var(--primary); */
+    opacity: 0.7; /* Alternative hover effect */
+}
+        
+        /* Image-based social icons styling */
+        .social-icons img {
             width: 35px;
             height: 35px;
-            border-radius: 50%;
-            background-color: var(--accent);
-            color: var(--primary);
-            transition: all 0.3s;
+            border-radius: 0;
+            border: none;
+            margin: 0;
+            transition: filter 0.3s;
         }
         
-        .social-icons a:hover {
-            background-color: var(--primary);
-            color: white;
+        .social-icons a:hover img {
+            filter: brightness(10); /* Makes the icon white when hovered */
         }
         
         /* Research Focus */
@@ -299,11 +347,13 @@
             margin-bottom: 30px;
             padding-bottom: 10px;
             border-bottom: 2px solid var(--accent);
+            text-align: center;
         }
         
         .research-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
             gap: 30px;
             margin-bottom: 60px;
         }
@@ -314,6 +364,8 @@
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             transition: transform 0.3s;
+            width: 280px;
+            text-align: center;
         }
         
         .research-card:hover {
@@ -322,29 +374,29 @@
         
         .research-image {
             width: 100%;
+            height: 200px;
             overflow: hidden;
-            border-bottom: 1px solid #eee;        }
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         
         .research-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* Changed from cover to contain for autofit */
             display: block; 
         }
         
         .research-content {
-            padding: 20px;
+            padding: 0px;
         }
         
         .research-content h3 {
             font-size: 1.3em;
             color: var(--primary);
             margin-bottom: 10px;
-        }
-        
-        .research-content p {
-            font-size: 0.95em;
-            margin-bottom: 15px;
         }
         
         /* Key Publications */
@@ -403,6 +455,7 @@
             flex-wrap: wrap;
             gap: 10px;
             margin-bottom: 20px;
+            justify-content: center;
         }
         
         .filter-btn {
@@ -546,7 +599,7 @@
                 font-size: 2.2em;
             }
             .research-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                justify-content: center;
             }
         }
         
@@ -614,6 +667,11 @@
                 display: none;
             }
         }
+        
+        /* Hero image controls - Hidden in the actual website */
+        .hero-controls {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -625,12 +683,12 @@
             <div class="menu-container">
                 <ul class="menu-links">
                   <li><a href="index.html">Home</a></li>
-            <li><a href="research.html">Research</a></li>
-            <li><a href="publications.html">Publications</a></li>
-           <!-- <li><a href="conferences.html">Conferences</a></li>
-            <li><a href="gallery.html">Gallery</a></li> -->
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="CV.html">CV</a></li>
+                  <li><a href="research.html">Research</a></li>
+                  <li><a href="publications.html">Publications</a></li>
+                  <!--<li><a href="conferences.html">Conferences</a></li>
+                  <li><a href="gallery.html">Gallery</a></li>-->
+                  <li><a href="contact.html">Contact</a></li>
+                  <li><a href="CV.html">CV</a></li>
                 </ul>
                 <div class="dropdown">
                     <button class="dropdown-button" onclick="toggleDropdown()">⋮</button>
@@ -645,6 +703,9 @@
 </header>
 
 <section class="hero">
+    <!-- Hero background image with transparency -->
+    <img class="hero-bg-image" id="heroBgImage" src="./images/iit.jpg" alt="Chemistry background">
+    
     <div class="hero-container">
         <h1>Advancing Computational Chemistry & Atomistic Simulations</h1>
         <p>Exploring molecular interactions, material properties, and chemical reactions through high-performance computing and advanced simulation techniques</p>
@@ -662,10 +723,11 @@
                 <span class="tag">Machine Learning</span>
             </div>
             <p>
-                I am a research scholar specializing in computational chemistry and atomistic simulations, applying theoretical and computational methods to solve complex chemical problems. My research combines quantum mechanics, molecular dynamics, and machine learning approaches to investigate molecular interactions, predict material properties, and simulate chemical reactions with atomic-level precision.
+                I am a research scholar in Computational Chemistry at the Indian Institute of Technology Delhi, originally from Hisar, Haryana. Under the supervision of Prof. Tarak Karmakar, my doctoral research focuses on the atomistic modeling of condensed-phase systems integrating quantum chemistry, molecular dynamics, and machine learning approaches.
             </p>
             <p>
-                Through high-performance computing and advanced simulation techniques, my work bridges the gap between theoretical models and experimental observations, providing molecular-level insights that are challenging to obtain through experimental methods alone. I am passionate about developing novel computational methodologies that enhance our understanding of chemical phenomena and accelerate the discovery of new materials and compounds.
+                I employ a wide range of computational methods and tools including DFT, ab initio molecular dynamics, and enhanced sampling techniques such as metadynamics, to explore free energy surfaces and simulate rare events. I also develop and apply machine learning interatomic potentials (e.g., via DeepMD) to scale up simulations of reactive systems while retaining quantum accuracy.
+                Through high-performance computing and advanced simulation techniques, my work bridges the gap between theoretical models and experimental observations, providing molecular-level insights that are challenging to obtain through experimental methods alone.
             </p>
         </div>
         <div class="bio-right">
@@ -673,13 +735,32 @@
                 <img src="images/profile.png" alt="Anmol">
                 <h3>Anmol</h3>
                 <p>Research Scholar in Computational Chemistry</p>
-                <p><i class="fas fa-university"></i> Indian Institute of Technology Delhi</p>
+                <div class="institution">
+                    <!-- Proper IIT Delhi Logo -->
+                    <img src="./images/iitd_logo.png" alt="IIT Delhi Logo">
+                    <span>Indian Institute of Technology Delhi</span>
+                </div>
                 <div class="social-icons">
-                    <a href="https://github.com/anmol-compchem" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://scholar.google.com/citations?user=sMwC6hIAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i></a>
-                    <!--<a href="https://orcid.org/0000-0000-0000-0000" target="_blank"><i class="fab fa-orcid"></i></a>
-                    <a href="https://www.researchgate.net/profile/Your_Profile" target="_blank"><i class="fab fa-researchgate"></i></a>
-                    <a href="https://www.linkedin.com/in/yourprofile/" target="_blank"><i class="fab fa-linkedin-in"></i></a>-->
+                    <a href="https://github.com/anmol-compchem" target="_blank" aria-label="GitHub Profile">
+                        <!-- GitHub icon as image -->
+                        <img src="./images/github.png" alt="GitHub" class="social-icon">
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=sMwC6hIAAAAJ&hl=en" target="_blank" aria-label="Google Scholar Profile">
+                        <!-- Google Scholar icon as image -->
+                        <img src="./images/scholar.png" alt="Google Scholar" class="social-icon">
+                    </a>
+                    <a href="https://orcid.org/0000-0002-0966-6496" target="_blank" aria-label="ORCID Profile">
+                        <!-- ORCID icon as image -->
+                        <img src="./images/orcid.png" alt="ORCID" class="social-icon">
+                    </a>
+                    <!--<a href="https://www.researchgate.net/profile/Your_Profile" target="_blank" aria-label="ResearchGate Profile">
+                         ResearchGate icon as image 
+                        <img src="/api/placeholder/18/18" alt="ResearchGate" class="social-icon">
+                    </a>
+                    <a href="https://www.linkedin.com/in/yourprofile/" target="_blank" aria-label="LinkedIn Profile">
+                        LinkedIn icon as image 
+                        <img src="/api/placeholder/18/18" alt="LinkedIn" class="social-icon">
+                    </a>-->
                 </div>
             </div>
         </div>
@@ -689,21 +770,19 @@
     <div class="research-grid">
         <div class="research-card">
             <div class="research-image">
-                <img src="./images/TOC_ES.png" alt="Exp">
+                <img src="./images/TOC_ES.png" alt="Molecular Dynamics Simulations">
             </div>
             <div class="research-content">
-                <h3>Molecular Dynamics Simulations</h3>
-                <p>Investigating dynamic behavior of complex molecular systems through large-scale atomistic simulations.</p>
+                <h3>Chemical Reaction Modelling using Machine Learning Augmented Enhnaced Sampling Simulations.</h3>
             </div>
         </div>
         
         <div class="research-card">
             <div class="research-image">
-                <img src="./images/TOC_2.png" alt="Quantum Chemistry Calculations">
+                <img src="./images/TOC_2.png" alt="Quantum Chemistry Methods">
             </div>
             <div class="research-content">
-                <h3>Quantum Chemistry Methods</h3>
-                <p>Applying ab initio and DFT calculations to understand electronic structure and reactivity.</p>
+                <h3>Data Efficient Deep Potential Training for Atomistic Simulations.</h3>
             </div>
         </div>
         
@@ -713,52 +792,50 @@
             </div>
             <div class="research-content">
                 <h3>ML-Driven Molecular Modeling</h3>
-                <p>Developing machine learning approaches to accelerate simulations and predict molecular properties.</p>
             </div>
         </div>-->
     </div>
-
     <h2 class="section-title">Key Publications</h2>
     
     <div class="publication-filters">
-        <button class="filter-btn active" data-filter="all">All Publications</button>
+       <!-- <button class="filter-btn active" data-filter="all">All Publications</button>
         <button class="filter-btn" data-filter="journal">Journal Articles</button>
-        <!--<button class="filter-btn" data-filter="book">Book Chapters</button>-->
-        <button class="filter-btn" data-filter="preprint">Preprints</button>
+        <button class="filter-btn" data-filter="book">Book Chapters</button>
+        <button class="filter-btn" data-filter="preprint">Preprints</button> -->     
     </div>
     
     <div class="publications-list">
-        <div class="publication-item" data-type="journal">
+        <!--<div class="publication-item" data-type="journal">
             <h3>Novel Force Field Development for Metal-Organic Frameworks Using Quantum Mechanical Calculations</h3>
             <p>An innovative approach for creating accurate force fields for simulating MOF materials based on high-level QM calculations.</p>
             <div class="publication-meta">
                 <span><i class="fas fa-book-open"></i> Journal of Computational Chemistry, 2024</span>
                 <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-            </div>
+                <!--<a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>-->
+           <!-- </div>
             <div class="publication-tags">
                 <span class="publication-tag">Force Fields</span>
                 <span class="publication-tag">MOFs</span>
                 <span class="publication-tag">Quantum Mechanics</span>
             </div>
-        </div>
+        </div>-->
         
         <div class="publication-item" data-type="journal">
-            <h3>Machine Learning Potential for Reactive Dynamics of Catalytic Processes</h3>
-            <p>A machine learning approach that enables accurate and efficient simulations of chemical reactions for heterogeneous catalysis.</p>
+            <h3>Unveiling the Role of Solvent in Solution Phase Chemical Reactions using Deep Potential-Based Enhanced Sampling Simulations</h3>
+            <p>Anmol, Tarak Karmakar</p>
             <div class="publication-meta">
-                <span><i class="fas fa-book-open"></i> Nature Computational Science, 2023</span>
-                <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
+                <span><i class="fas fa-book-open"></i> Journal of Physical Chemistry Letters 2024</span>
+                <a href="https://pubs.acs.org/doi/full/10.1021/acs.jpclett.4c02224" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
+                <!--<a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>-->
             </div>
-            <div class="publication-tags">
+           <!-- <div class="publication-tags">
                 <span class="publication-tag">Machine Learning</span>
                 <span class="publication-tag">Catalysis</span>
                 <span class="publication-tag">Reactive Dynamics</span>
-            </div>
+            </div>-->
         </div>
         
-        <div class="publication-item" data-type="book">
+        <!--<div class="publication-item" data-type="preprints">
             <h3>Multi-Scale Modeling of Photocatalytic Water Splitting on Semiconductor Surfaces</h3>
             <p>An integrated computational framework combining quantum mechanics and molecular dynamics to simulate photocatalytic reactions.</p>
             <div class="publication-meta">
@@ -771,12 +848,12 @@
                 <span class="publication-tag">Multi-scale Modeling</span>
                 <span class="publication-tag">Water Splitting</span>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 
   <footer>
-    <p>&copy; Anmol | IIT Delhi</p>
+    <p>Anmol | IIT Delhi</p>
 </footer>
 
 
