@@ -3,661 +3,1211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publications - Academic Profile</title>
+    <title>Publications - Dr. Anmol | Computational Chemistry Research</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-         :root {
-            --primary: #004080;
-            --secondary: #0066cc;
-            --light: #f8f9fa;
-            --accent: #e6f0ff;
-            --text: #333;
-            --nav-bg: #f1f1f1;
+        :root {
+            --primary-dark: #1a1a2e;
+            --primary-accent: #16213e;
+            --secondary: #0f3460;
+            --accent-bright: #e94560;
+            --accent-gold: #ffd700;
+            --text-light: #f5f5f5;
+            --text-muted: #b0b0b0;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
         }
-        body {
-            font-family: Helvetica, Arial, sans-serif;
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
             line-height: 1.6;
         }
-        header {
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky;
+
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--primary-dark);
         }
 
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(233, 69, 96, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(118, 75, 162, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
         }
 
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: var(--primary);
-            text-decoration: none;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(1deg); }
+            66% { transform: translateY(10px) rotate(-1deg); }
         }
 
-        nav {
-            background-color: white;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 20px;
-            position: relative;
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 15px 30px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(-50%) scale(1.02);
         }
 
         .menu-container {
             display: flex;
-            align-items: center;
-            gap: 30px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
+            justify-content: center;
         }
 
         .menu-links {
             display: flex;
-            gap: 30px;
             list-style: none;
+            gap: 30px;
+            align-items: center;
+            margin: 0;
             padding: 0;
-            margin: 0;
         }
 
-        .menu-links li {
-            margin: 0;
-        }
-
-        nav a {
+        .menu-links a {
+            color: var(--text-light);
             text-decoration: none;
-            color: var(--primary);
-            white-space: nowrap;
-            display: block;
-            padding: 5px 0;
             font-weight: 500;
+            transition: all 0.3s ease;
             position: relative;
-            transition: color 0.3s;
+            padding: 8px 16px;
+            border-radius: 25px;
+            white-space: nowrap;
+            display: inline-block;
         }
 
-        nav a:hover {
-            color: var(--secondary);
+        .menu-links a:hover {
+            color: var(--accent-bright);
+            background: rgba(233, 69, 96, 0.1);
         }
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: var(--secondary);
-            transition: width 0.3s;
+        .menu-links a.active {
+            background: var(--accent-bright);
+            color: white;
         }
 
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .dropdown {
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 20px 80px;
             position: relative;
-            display: none;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 100%;
-            background-color: white;
-            min-width: 200px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             z-index: 1;
-            border-radius: 4px;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-light), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .stat-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 20px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-bright);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Controls Section */
+        .controls-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 60px;
+            position: relative;
             overflow: hidden;
         }
 
-        .dropdown-content a {
-            padding: 12px 16px;
-            border-bottom: 1px solid #eee;
+        .controls-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-1);
         }
 
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown.active .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-button {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--primary);
-        }
-
-        .hamburger {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--primary);
-            background: none;
-            border: none;
-        }
-        .container {
-            padding: 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
-        .page-title {
-            color: #004080;
-            border-bottom: 2px solid #004080;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-        .header-actions {
-            display: flex;
-            justify-content: space-between;
+        .controls-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 30px;
             align-items: center;
-            margin-bottom: 30px;
         }
-        .publication-filters {
+
+        .filter-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-light);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn:hover {
+            background: rgba(233, 69, 96, 0.1);
+            border-color: var(--accent-bright);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: var(--accent-bright);
+            color: white;
+            box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4);
+        }
+
+        .scholar-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .scholar-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gradient-3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(79, 172, 254, 0.3);
+        }
+
+        .scholar-link:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.5);
+        }
+
+        /* Publications Container */
+        .publications-container {
+            position: relative;
+        }
+
+        .year-section {
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .year-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 100px;
+            background: var(--primary-dark);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            z-index: 10;
+        }
+
+        .year-title {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .year-line {
+            flex: 1;
+            height: 2px;
+            background: var(--gradient-2);
+            border-radius: 1px;
+        }
+
+        .year-count {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Publication Cards */
+        .publication-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            transform: translateZ(0);
+        }
+
+        .publication-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-bright);
+        }
+
+        .publication-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .publication-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .publication-type {
+            display: inline-block;
+            background: var(--accent-bright);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        .publication-type.journal {
+            background: var(--gradient-1);
+        }
+
+        .publication-type.preprint {
+            background: var(--gradient-2);
+        }
+
+        .publication-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .publication-authors {
+            color: var(--accent-gold);
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .publication-venue {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .publication-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .publication-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-light);
+            padding: 10px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .publication-link:hover {
+            background: var(--accent-bright);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.3);
+        }
+
+        .publication-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
         }
-        .sorting-options {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .scholar-link {
-            display: inline-flex;
-            align-items: center;
-            background-color: #4285F4;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .scholar-link:hover {
-            background-color: #3367D6;
-        }
-        .scholar-link img {
-            margin-right: 8px;
-            height: 20px;
-        }
-        .sort-select {
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            background-color: white;
-            cursor: pointer;
-        }
-        .filter-btn {
-            background-color: #f1f1f1;
-            border: 1px solid #ddd;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background-color: #004080;
-            color: white;
-        }
-        .publication-year {
-            margin-bottom: 30px;
-        }
-        .publication-year h2 {
-            color: #004080;
-            margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-        .publication {
-            background-color: white;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .publication-title {
-            font-weight: bold;
-            margin: 0 0 10px 0;
-            color: #333;
-        }
-        .publication-authors {
-            font-style: italic;
-            margin-bottom: 10px;
-            color: #555;
-        }
-        .publication-venue {
-            margin-bottom: 15px;
-            color: #666;
-        }
-        .publication-links {
-            display: flex;
-            gap: 15px;
-        }
-        .publication-link {
-            display: inline-block;
-            padding: 5px 10px;
-            background-color: #f1f1f1;
-            color: #004080;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 14px;
-            transition: background-color 0.3s;
-        }
-        .publication-link:hover {
-            background-color: #ddd;
-        }
-        .publication-tags {
-            margin-top: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
+
         .publication-tag {
-            background-color: #e6f0ff;
-            color: #004080;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-        }
-        footer {
-            background-color: #004080;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            margin-top: 40px;
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--accent-gold);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
-        /* Base responsive breakpoints */
-        @media (max-width: 992px) {
-            .menu-links li:nth-child(n+5) {
-                display: none;
+        /* Loading Animation */
+        .loading-indicator {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--glass-border);
+            border-top: 3px solid var(--accent-bright);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--text-muted);
+            display: none;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--accent-bright);
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                transform: none;
+                padding: 12px 20px;
+                width: calc(100% - 20px);
             }
-            .dropdown {
-                display: block;
+
+            .menu-links {
+                gap: 15px;
+                font-size: 0.9rem;
+                justify-content: center;
+                flex-wrap: wrap;
             }
-             .bio-section {
-                flex-direction: column-reverse;
+
+            .menu-links a {
+                padding: 6px 12px;
+            }
+
+            .container {
+                padding-top: 100px;
+            }
+
+            .controls-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .stats-row {
+                gap: 20px;
+            }
+
+            .stat-item {
+                padding: 15px 20px;
+            }
+
+            .year-header {
+                top: 80px;
+            }
+
+            .publication-card {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-links {
+                gap: 8px;
+            }
+
+            .menu-links a {
+                padding: 4px 8px;
+                font-size: 0.8rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .stats-row {
+                flex-direction: column;
                 align-items: center;
             }
-            .bio-right {
-                position: static;
-                margin-bottom: 40px;
-                width: 100%;
-                max-width: 400px;
+
+            .filter-section {
+                justify-content: center;
+            }
+
+            .publication-links {
+                justify-content: center;
             }
         }
 
-        @media (max-width: 768px) {
-            .menu-links li:nth-child(n+4) {
-                display: none;
-            }
-             .hero {
-                padding: 60px 0;
-            }
-            .hero h1 {
-                font-size: 2.2em;
-            }
-            .research-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
         }
 
-        @media (max-width: 576px) {
-            .menu-links li:nth-child(n+3) {
-                display: none;
-            }
-             .container {
-                padding: 30px 15px;
-            }
-            .hero {
-                padding: 40px 0;
-            }
-            .hero h1 {
-                font-size: 1.8em;
-            }
-            .section-title {
-                font-size: 1.5em;
-            }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        @media (max-width: 450px) {
-            .menu-links li:nth-child(n+2) {
-                display: none;
-            }
-             .header-container {
-                height: 60px;
-            }
-            .logo {
-                font-size: 1.3rem;
-            }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        @media (max-width: 360px) {
-            .menu-links {
-                display: none;
-            }
-            .hamburger {
-                display: block;
-            }
-            nav.responsive .menu-links {
-                display: flex;
-                position: absolute;
-                top: 100%;
-                right: 0;
-                flex-direction: column;
-                background-color: white;
-                gap: 0;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                min-width: 200px;
-                z-index: 2;
-                border-radius: 4px;
-            }
-            nav.responsive .menu-links li {
-                display: block;
-            }
-            nav.responsive .menu-links a {
-                padding: 12px 20px;
-                border-bottom: 1px solid #eee;
-            }
-            .dropdown {
-                display: none;
-            }
-            nav.responsive .dropdown {
-                display: none;
-            }
+        ::-webkit-scrollbar-track {
+            background: var(--primary-dark);
         }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-bright);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-gold);
+        }
+              .footer {
+            background: var(--primary-accent);
+            padding: 60px 20px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0.1;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--text-muted);
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-bright);
+        }
+
+        .copyright {
+            border-top: 1px solid var(--glass-border);
+            padding-top: 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
     </style>
-<header>
-    <div class="header-container">
-        <a href="index.html" class="logo">Anmol</a>
-        <nav>
-            <div class="menu-container">
-                <ul class="menu-links">
-                  <li><a href="index.html">Home</a></li>
-            <li><a href="research.html">Research</a></li>
-            <li><a href="publications.html">Publications</a></li>
-           <!-- <li><a href="conferences.html">Conferences</a></li>
-            <li><a href="gallery.html">Gallery</a></li> -->
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="CV.html">CV</a></li>
-                </ul>
-                <div class="dropdown">
-                    <button class="dropdown-button" onclick="toggleDropdown()">⋮</button>
-                    <div class="dropdown-content" id="menuDropdown">
-                        </div>
-                </div>
-            </div>
-            <button class="hamburger" onclick="toggleMenu()">☰</button>
-        </nav>
-    </div>
-</header>
+</head>
+<body>
+    <div class="bg-animation"></div>
 
-<div class="container">
-    <h1 class="page-title">Publications</h1>
-    
-    <div class="header-actions">
-        <div class="publication-filters">
-            <button class="filter-btn active" data-filter="all">All Publications</button>
-            <button class="filter-btn" data-filter="journal">Journal Articles</button>
-            <!--<button class="filter-btn" data-filter="book">Book Chapters</button>-->
-            <button class="filter-btn" data-filter="preprint">Preprints</button>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="menu-container">
+            <ul class="menu-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="publications.html" class="active">Publications</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="CV.html">CV</a></li>
+            </ul>
         </div>
-        
-        <div class="sorting-options">
-           <!-- <select class="sort-select" id="yearSort">
-                <option value="desc">Newest First</option>
-                <option value="asc">Oldest First</option> -->
-            </select>
-            
-            <a href="https://scholar.google.com/citations?user=YOUR_ID&user=sMwC6hIAAAAJ" class="scholar-link" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
-                    <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
-                </svg>
-                Google Scholar
-            </a>
-        </div>
-    </div>
-    
-    <div id="publications-container">
-        <div class="publication-year" data-year="2025">
-            <h2>2025</h2>
-            
-            <div class="publication" data-type="preprint" data-year="2025">
-                <h3 class="publication-title">Elucidating the Mechanism of Substrate Encapsulation in Supramolecular Resorcin [4] arene using Enhanced Sampling Simulations</h3>
-                <div class="publication-authors">Tanish Tyagi, Anmol, Tarak Karmakar*</div>
-                <div class="publication-venue">Under Review</div>
-                <div class="publication-links">
-                    <a href="https://doi.org/10.26434/chemrxiv-2025-x512g" class="publication-link">DOI</a>
-                    <!--<a href="#" class="publication-link">arXiv</a>-->
-                </div>
-            </div>
+    </nav>
 
-
-            <div class="publication" data-type="journal" data-year="2025">
-                <h3 class="publication-title">Locality Sensitive Hashing-based Dataset Reduction for Deep Potential Training</h3>
-                <div class="publication-authors">Anmol, Anuj Kumar Sirohi, Neha, Jayadeva, Sandeep Kumar, Tarak Karmakar*</div>
-                <div class="publication-venue">J. Chem. Theory Comput. 2025, 21, 12, 6113–6120</div>
-                <div class="publication-links">
-                    <a href="https://doi.org/10.1021/acs.jctc.5c00366" class="publication-link">DOI</a>
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header fade-in">
+            <h1 class="page-title">Publications</h1>
+            <p class="page-subtitle">
+                Peer-reviewed articles, preprints, and research contributions in computational chemistry and molecular modeling
+            </p>
+            
+            <div class="stats-row">
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">Total Publications</span>
                 </div>
-                <!--<div class="publication-tags">
-                    <span class="publication-tag">Natural Language Processing</span>
-                    <span class="publication-tag">Deep Learning</span>
-                    <span class="publication-tag">Transformer Models</span>-->
+                <div class="stat-item">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Journal Articles</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Under Review</span>
                 </div>
             </div>
         </div>
-        
-        <div class="publication-year" data-year="2024">
-            <h2>2024</h2>
-            
-            <div class="publication" data-type="journal" data-year="2024">
-                <h3 class="publication-title">Unveiling the Role of Solvent in Solution Phase Chemical Reactions using Deep Potential-Based Enhanced Sampling Simulations</h3>
-                <div class="publication-authors">Anmol, Tarak Karmakar*</div>
-                <div class="publication-venue">J. Phys. Chem. Lett. 2024, 15, 39, 9932-9938</div>
-                <div class="publication-links">
-                    <a href="https://doi.org/10.1021/acs.jpclett.4c02224" class="publication-link">DOI</a>
-                    <!--<a href="#" class="publication-link">arXiv</a>-->
-                </div>
-            </div>
 
-            <div class="publication" data-type="journal" data-year="2024">
-                <h3 class="publication-title">Visible Light-Promoted Regioselective Benzannulation of Vinyl Sulfoxonium Ylides with Ynoates</h3>
-                <div class="publication-authors">Daksh Singh Davas, Dinesh Kumar Gopalakrishnan, Sandeep Kumar, Anmol, Tarak Karmakar*, Janakiram Vaitla*</div>
-                <div class="publication-venue">JACS Au 2024, 4, 3, 1073–1080</div>
-                <div class="publication-links">
-                    <a href="https://doi.org/10.1021/jacsau.3c00802" class="publication-link">DOI</a>
-                    <!--<a href="#" class="publication-link">arXiv</a>-->
+        <!-- Controls Section -->
+        <div class="controls-section fade-in">
+            <div class="controls-grid">
+                <div class="filter-section">
+                    <span class="filter-label">
+                        <i class="fas fa-filter"></i>
+                        Filter by Type:
+                    </span>
+                    <button class="filter-btn active" data-filter="all">All Publications</button>
+                    <button class="filter-btn" data-filter="journal">Journal Articles</button>
+                    <button class="filter-btn" data-filter="preprint">Preprints</button>
                 </div>
-            </div>
-
-        </div>
-        
-        <div class="publication-year" data-year="2023">
-            <h2>2023</h2>
-            
-            <div class="publication" data-type="journal" data-year="2023">
-                <h3 class="publication-title">Cu(I)/N,N-Imine Ligand Catalyzed C(sp<sup>3</sup>)–C(sp) Coupling of Alkyl Bromides with Alkynes: Scope and Mechanistic Investigation</h3>
-                <div class="publication-authors">Swati Jain, Anmol, Ruchi Sharma, Tarak Karmakar*, M. Ramu Yadav*</div>
-                <div class="publication-venue">Org. Lett. 2023, 25, 29, 5437–5442</div>
-                <div class="publication-links">
-                    <a href="https://doi.org/10.1021/acs.orglett.3c01735" class="publication-link">DOI</a>
-                    <!--<a href="#" class="publication-link">arXiv</a>-->
-                </div>
-            </div>
-
-            <div class="publication" data-type="journal" data-year="2024">
-                <h3 class="publication-title">Bicyclic (alkyl)(amino)carbene (BICAAC)-supported phosphinidenes</h3>
-                <div class="publication-authors">Ritu Yadav, Bindusagar Das, Ashi Singh, Anmol, Ankita Sharma, Chinmoy Majumder, Subrata Kund*</div>
-                <div class="publication-venue">Dalton Trans., 2023,52, 16680-16687</div>
-                <div class="publication-links">
-                    <a href="https://doi.org/10.1039/D3DT02765A" class="publication-link">DOI</a>
-                    <!--<a href="#" class="publication-link">arXiv</a>-->
-                </div>
-            </div>
-
-            <div class="publication-year" data-year="2022">
-                <h2>2022</h2>
                 
-                <div class="publication" data-type="journal" data-year="2024">
-                    <h3 class="publication-title">Understanding cyclic(alkyl)(amino)carbene–copper complex catalysed N–H and O–H bond addition to electron deficient olefins</h3>
-                    <div class="publication-authors">Akshi Tyagi, Sunita Mondal, Anmol, Vikas Tiwari, Tarak Karmakar*, Subrata Kundu*</div>
-                    <div class="publication-venue"></div>
-                    <div class="publication-links">
-                        <a href="https://doi.org/10.1039/D2CC05613E" class="publication-link">DOI</a>
-                        <!--<a href="#" class="publication-link">arXiv</a>-->
+                <div class="scholar-section">
+                    <a href="https://scholar.google.com/citations?user=sMwC6hIAAAAJ&hl=en" class="scholar-link" target="_blank">
+                        <i class="fas fa-graduation-cap"></i>
+                        Google Scholar
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Publications Container -->
+        <div class="publications-container" id="publicationsContainer">
+            <!-- 2025 Publications -->
+            <div class="year-section fade-in" data-year="2025">
+                <div class="year-header">
+                    <h2 class="year-title">2025</h2>
+                    <div class="year-line"></div>
+                    <span class="year-count">2 publications</span>
+                </div>
+                
+                <div class="publication-card" data-type="journal" data-year="2025">
+                    <div class="publication-content">
+                        <span class="publication-type preprint">Journal Article</span>
+                        <h3 class="publication-title">Elucidating the Mechanism of Substrate Encapsulation in Supramolecular Resorcin[4]arene using Enhanced Sampling Simulations</h3>
+                        <div class="publication-authors">Tanish Tyagi, Anmol, Tarak Karmakar*</div>
+                        <div class="publication-venue">
+                            <i class="fas fa-book-open"></i>
+                            Phys. Chem. Chem. Phys., 2025, Advance Article
+                        </div>
+                        <div class="publication-links">
+                            <a href="https://doi.org/10.1039/D5CP02001H" class="publication-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                DOI
+                            </a>
+                        </div>
+                        <div class="publication-tags">
+                            <span class="publication-tag">Enhanced Sampling</span>
+                            <span class="publication-tag">Supramolecular Chemistry</span>
+                            <span class="publication-tag">Molecular Dynamics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="publication-card" data-type="journal" data-year="2025">
+                    <div class="publication-content">
+                        <span class="publication-type preprint">Journal Article</span>
+                        <h3 class="publication-title">Locality Sensitive Hashing-based Dataset Reduction for Deep Potential Training</h3>
+                        <div class="publication-authors">Anmol, Anuj Kumar Sirohi, Neha, Jayadeva, Sandeep Kumar, Tarak Karmakar*</div>
+                        <div class="publication-venue">
+                            <i class="fas fa-open-book"></i>
+                            J. Chem. Theory Comput. 2025, 21, 12, 6113–6120
+                        </div>
+                        <div class="publication-links">
+                            <a href="https://doi.org/10.1021/acs.jctc.5c00366" class="publication-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                DOI
+                            </a>
+                        </div>
+                        <div class="publication-tags">
+                            <span class="publication-tag">Machine Learning</span>
+                            <span class="publication-tag">Deep Learning</span>
+                            <span class="publication-tag">Data Reduction</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- 2024 Publications -->
+            <div class="year-section fade-in" data-year="2024">
+                <div class="year-header">
+                    <h2 class="year-title">2024</h2>
+                    <div class="year-line"></div>
+                    <span class="year-count">2 publications</span>
+                </div>
+                
+                <div class="publication-card" data-type="journal" data-year="2024">
+                    <div class="publication-content">
+                        <span class="publication-type journal">Journal Article</span>
+                        <h3 class="publication-title">Unveiling the Role of Solvent in Solution Phase Chemical Reactions using Deep Potential-Based Enhanced Sampling Simulations</h3>
+                        <div class="publication-authors">Anmol, Tarak Karmakar*</div>
+                        <div class="publication-venue">
+                            <i class="fas fa-book-open"></i>
+                            J. Phys. Chem. Lett. 2024, 15, 39, 9932-9938
+                        </div>
+                        <div class="publication-links">
+                            <a href="https://doi.org/10.1021/acs.jpclett.4c02224" class="publication-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                DOI
+                            </a>
+                        </div>
+                        <div class="publication-tags">
+                            <span class="publication-tag">Chemical Reactions</span>
+                            <span class="publication-tag">Deep Potential</span>
+                            <span class="publication-tag">Solvent Effects</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="publication-card" data-type="journal" data-year="2024">
+                    <div class="publication-content">
+                        <span class="publication-type journal">Journal Article</span>
+                        <h3 class="publication-title">Visible Light-Promoted Regioselective Benzannulation of Vinyl Sulfoxonium Ylides with Ynoates</h3>
+                        <div class="publication-authors">Daksh Singh Davas, Dinesh Kumar Gopalakrishnan, Sandeep Kumar, Anmol, Tarak Karmakar*, Janakiram Vaitla*</div>
+                        <div class="publication-venue">
+                            <i class="fas fa-book-open"></i>
+                            JACS Au 2024, 4, 3, 1073–1080
+                        </div>
+                        <div class="publication-links">
+                            <a href="https://doi.org/10.1021/jacsau.3c00802" class="publication-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                DOI
+                            </a>
+                        </div>
+                        <div class="publication-tags">
+                            <span class="publication-tag">Photochemistry</span>
+                            <span class="publication-tag">Organic Synthesis</span>
+                            <span class="publication-tag">Mechanism</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2023 Publications -->
+            <div class="year-section fade-in" data-year="2023">
+                <div class="year-header">
+                    <h2 class="year-title">2023</h2>
+                    <div class="year-line"></div>
+                    <span class="year-count">2 publications</span>
+                </div>
+                
+                <div class="publication-card" data-type="journal" data-year="2023">
+                    <div class="publication-content">
+                        <span class="publication-type journal">Journal Article</span>
+                        <h3 class="publication-title">Cu(I)/N,N-Imine Ligand Catalyzed C(sp³)–C(sp) Coupling of Alkyl Bromides with Alkynes: Scope and Mechanistic Investigation</h3>
+                        <div class="publication-authors">Swati Jain, Anmol, Ruchi Sharma, Tarak Karmakar*, M. Ramu Yadav*</div>
+                        <div class="publication-venue">
+                            <i class="fas fa-book-open"></i>
+                            Org. Lett. 2023, 25, 29, 5437–5442
+                        </div>
+                        <div class="publication-links">
+                            <a href="https://doi.org/10.1021/acs.orglett.3c01735" class="publication-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                DOI
+                            </a>
+                        </div>
+                        <div class="publication-tags">
+                            <span class="publication-tag">Catalysis</span>
+                            <span class="publication-tag">Coupling Reactions</span>
+                            <span class="publication-tag">Mechanistic Study</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="publication-card" data-type="journal" data-year="2023">
+                    <div class="publication-content">
+                        <span class="publication-type journal">Journal Article</span>
+                        <h3 class="publication-title">Bicyclic (alkyl)(amino)carbene (BICAAC)-supported phosphinidenes</h3>
+                        <div class="publication-authors">Ritu Yadav, Bindusagar Das, Ashi Singh, Anmol, Ankita Sharma, Chinmoy Majumder, Subrata Kundu*</div>
+                        <div class="publication-venue">
+                            <i class="fas fa-book-open"></i>
+                            Dalton Trans., 2023, 52, 16680-16687
+                        </div>
+                        <div class="publication-links">
+                            <a href="https://doi.org/10.1039/D3DT02765A" class="publication-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                DOI
+                            </a>
+                        </div>
+                        <div class="publication-tags">
+                            <span class="publication-tag">Organometallic Chemistry</span>
+                            <span class="publication-tag">Carbenes</span>
+                            <span class="publication-tag">Phosphinidenes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2022 Publications -->
+            <div class="year-section fade-in" data-year="2022">
+                <div class="year-header">
+                    <h2 class="year-title">2022</h2>
+                    <div class="year-line"></div>
+                    <span class="year-count">1 publication</span>
+                </div>
+                
+                <div class="publication-card" data-type="journal" data-year="2022">
+                    <div class="publication-content">
+                        <span class="publication-type journal">Journal Article</span>
+                        <h3 class="publication-title">Understanding cyclic(alkyl)(amino)carbene–copper complex catalysed N–H and O–H bond addition to electron deficient olefins</h3>
+                        <div class="publication-authors">Akshi Tyagi, Sunita Mondal, Anmol, Vikas Tiwari, Tarak Karmakar*, Subrata Kundu*</div>
+                        <div class="publication-venue">
+                            <i class="fas fa-book-open"></i>
+                            Chem. Commun., 2022, 58, 13288-13291
+                        </div>
+                        <div class="publication-links">
+                            <a href="https://doi.org/10.1039/D2CC05613E" class="publication-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                DOI
+                            </a>
+                        </div>
+                        <div class="publication-tags">
+                            <span class="publication-tag">Catalysis</span>
+                            <span class="publication-tag">Copper Chemistry</span>
+                            <span class="publication-tag">Bond Addition</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div class="loading-indicator" id="loadingIndicator">
+            <div class="loading-spinner"></div>
+            <p>Loading publications...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState">
+            <i class="fas fa-search"></i>
+            <h3>No publications found</h3>
+            <p>Try adjusting your filters or search criteria</p>
         </div>
     </div>
-</div>
 
-<footer>
-    <p>Anmol | IIT Delhi</p>
-</footer>
+    <script>
+        // Fade in animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            const windowHeight = window.innerHeight;
 
-<script>
-    function toggleMenu() {
-        const nav = document.querySelector('nav');
-        nav.classList.toggle('responsive');
-    }
-    
-    function toggleDropdown() {
-        const dropdown = document.querySelector('.dropdown');
-        dropdown.classList.toggle('active');
-    }
-    
-    // Function to manage which menu items are visible and which are in dropdown
-    function updateMenuItems() {
-        const menuLinks = document.querySelectorAll('.menu-links li');
-        const dropdownContent = document.getElementById('menuDropdown');
-        
-        // Clear the dropdown
-        dropdownContent.innerHTML = '';
-        
-        // Check which items are hidden and add them to dropdown
-        menuLinks.forEach((item, index) => {
-            if (window.getComputedStyle(item).display === 'none') {
-                const link = item.querySelector('a').cloneNode(true);
-                dropdownContent.appendChild(link);
-            }
-        });
-        
-        // Hide dropdown if no items are in it
-        const dropdown = document.querySelector('.dropdown');
-        if (dropdownContent.children.length === 0) {
-            dropdown.style.display = 'none';
-        } else {
-            dropdown.style.display = 'block';
-        }
-    }
-    
-    // Publication filtering
-    function setupFilters() {
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const publications = document.querySelectorAll('.publication');
-        
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                this.classList.add('active');
-                
-                const filter = this.getAttribute('data-filter');
-                
-                // Show/hide publications based on filter
-                publications.forEach(publication => {
-                    if (filter === 'all' || publication.getAttribute('data-type') === filter) {
-                        publication.style.display = 'block';
-                    } else {
-                        publication.style.display = 'none';
-                    }
-                });
-                
-                // Check if any publications are visible in each year section
-                document.querySelectorAll('.publication-year').forEach(yearSection => {
-                    const visiblePublications = Array.from(yearSection.querySelectorAll('.publication')).filter(pub => 
-                        pub.style.display !== 'none'
-                    );
-                    
-                    yearSection.style.display = visiblePublications.length > 0 ? 'block' : 'none';
-                });
-            });
-        });
-    }
-    
-    // Year-wise sorting function
-    function setupSorting() {
-        const sortSelect = document.getElementById('yearSort');
-        const publicationsContainer = document.getElementById('publications-container');
-        
-        sortSelect.addEventListener('change', function() {
-            const yearSections = Array.from(document.querySelectorAll('.publication-year'));
-            const sortOrder = this.value;
-            
-            // Sort year sections
-            yearSections.sort((a, b) => {
-                const yearA = parseInt(a.getAttribute('data-year'));
-                const yearB = parseInt(b.getAttribute('data-year'));
-                
-                if (sortOrder === 'asc') {
-                    return yearA - yearB;
-                } else {
-                    return yearB - yearA;
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('visible');
                 }
             });
-            
-            // Remove all year sections from container
-            yearSections.forEach(section => {
-                publicationsContainer.removeChild(section);
+        }
+
+        // Publication filtering
+        function setupFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const publicationCards = document.querySelectorAll('.publication-card');
+            const yearSections = document.querySelectorAll('.year-section');
+            const emptyState = document.getElementById('emptyState');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+                    let visibleCount = 0;
+
+                    // Show/hide publications based on filter
+                    publicationCards.forEach(card => {
+                        const cardType = card.getAttribute('data-type');
+                        if (filter === 'all' || cardType === filter) {
+                            card.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+
+                    // Show/hide year sections based on visible publications
+                    yearSections.forEach(section => {
+                        const visiblePublications = section.querySelectorAll('.publication-card[style="display: block"], .publication-card:not([style*="display: none"])');
+                        const actuallyVisible = Array.from(visiblePublications).filter(pub => 
+                            filter === 'all' || pub.getAttribute('data-type') === filter
+                        );
+                        
+                        if (actuallyVisible.length > 0) {
+                            section.style.display = 'block';
+                            // Update year count
+                            const yearCount = section.querySelector('.year-count');
+                            const count = actuallyVisible.length;
+                            yearCount.textContent = `${count} publication${count !== 1 ? 's' : ''}`;
+                        } else {
+                            section.style.display = 'none';
+                        }
+                    });
+
+                    // Show empty state if no publications visible
+                    if (visibleCount === 0) {
+                        emptyState.style.display = 'block';
+                    } else {
+                        emptyState.style.display = 'none';
+                    }
+
+                    // Add smooth animation
+                    publicationCards.forEach(card => {
+                        if (card.style.display !== 'none') {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.transition = 'all 0.5s ease';
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 100);
+                        }
+                    });
+                });
             });
+        }
+
+        // Smooth scrolling for internal links
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Search functionality (if needed)
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const publicationCards = document.querySelectorAll('.publication-card');
+
+                    publicationCards.forEach(card => {
+                        const title = card.querySelector('.publication-title').textContent.toLowerCase();
+                        const authors = card.querySelector('.publication-authors').textContent.toLowerCase();
+                        const venue = card.querySelector('.publication-venue').textContent.toLowerCase();
+
+                        if (title.includes(searchTerm) || authors.includes(searchTerm) || venue.includes(searchTerm)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial animation trigger
+            animateOnScroll();
             
-            // Add sorted year sections back to container
-            yearSections.forEach(section => {
-                publicationsContainer.appendChild(section);
+            // Setup functionality
+            setupFilters();
+            setupSmoothScrolling();
+            setupSearch();
+
+            // Add scroll event listener for animations
+            window.addEventListener('scroll', animateOnScroll);
+
+            // Add resize event listener for responsive adjustments
+            window.addEventListener('resize', function() {
+                // Handle any responsive adjustments if needed
+            });
+
+            // Add loading simulation (optional)
+            setTimeout(() => {
+                document.getElementById('loadingIndicator').style.display = 'none';
+            }, 500);
+        });
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to publication cards
+            const publicationCards = document.querySelectorAll('.publication-card');
+            
+            publicationCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.01)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add click tracking for external links
+            const externalLinks = document.querySelectorAll('a[target="_blank"]');
+            externalLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    // You can add analytics tracking here if needed
+                    console.log('External link clicked:', this.href);
+                });
+            });
+
+            // Add keyboard navigation support
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    // Close any open modals or reset filters
+                    const activeFilter = document.querySelector('.filter-btn.active');
+                    if (activeFilter && activeFilter.getAttribute('data-filter') !== 'all') {
+                        document.querySelector('.filter-btn[data-filter="all"]').click();
+                    }
+                }
             });
         });
-    }
-    
-    // Run on load and on window resize
-    window.addEventListener('load', function() {
-        updateMenuItems();
-        setupFilters();
-        setupSorting();
-    });
-    window.addEventListener('resize', updateMenuItems);
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function(event) {
-        const dropdown = document.querySelector('.dropdown');
-        const dropdownButton = document.querySelector('.dropdown-button');
-        
-        if (!dropdown.contains(event.target) && event.target !== dropdownButton) {
-            dropdown.classList.remove('active');
-        }
-    });
-</script>
 
+        // Add intersection observer for better performance
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.fade-in').forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Add dynamic stats update based on visible publications
+        function updateStats() {
+            const allCards = document.querySelectorAll('.publication-card');
+            const journalCards = document.querySelectorAll('.publication-card[data-type="journal"]');
+            const preprintCards = document.querySelectorAll('.publication-card[data-type="preprint"]');
+
+            // Update stat numbers
+            const statNumbers = document.querySelectorAll('.stat-number');
+            if (statNumbers.length >= 3) {
+                statNumbers[0].textContent = allCards.length;
+                statNumbers[1].textContent = journalCards.length;
+                statNumbers[2].textContent = preprintCards.length;
+            }
+        }
+
+        // Call updateStats when DOM is loaded
+        document.addEventListener('DOMContentLoaded', updateStats);
+    </script>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Research Focus</h3>
+                    <p>Computational Chemistry • Molecular Dynamics • Machine Learning • Quantum Mechanics</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Institution</h3>
+                    <p>Indian Institute of Technology Delhi<br>Department of Chemistry</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <p>
+                        <a href="https://github.com/anmol-compchem">GitHub</a> •
+                        <a href="https://scholar.google.com/citations?user=sMwC6hIAAAAJ&hl=en">Google Scholar</a> •
+                        <a href="https://orcid.org/0000-0002-0966-6496">ORCID</a>
+                    </p>
+                </div>
+            </div>
 </body>
 </html>
+
+
+<!-- <div class="publication-card" data-type="journal" data-year="2025">
+                    <div class="publication-content">
+                        <span class="publication-type preprint">Journal Article</span>
+                        <h3 class="publication-title">Locality Sensitive Hashing-based Dataset Reduction for Deep Potential Training</h3>
+                        <div class="publication-authors">Anmol, Anuj Kumar Sirohi, Neha, Jayadeva, Sandeep Kumar, Tarak Karmakar*</div>
+                        <div class="publication-venue">
+                            <i class="fas fa-clock"></i>
+                            Under Review
+                        </div>
+                        <div class="publication-links">
+                            <a href="https://doi.org/10.26434/chemrxiv-2025-x512g" class="publication-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                DOI
+                            </a>
+                        </div>
+                        <div class="publication-tags">
+                            <span class="publication-tag">Machine Learning</span>
+                            <span class="publication-tag">Deep Learning</span>
+                            <span class="publication-tag">Data Reduction</span>
+                        </div>
+                    </div>
+                </div>
+            </div>--!>

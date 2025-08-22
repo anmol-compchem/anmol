@@ -3,450 +3,780 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research - Academic Profile</title>
+    <title>Research - Dr. Anmol | Computational Chemistry</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary: #004080;
-            --secondary: #0066cc;
-            --light: #f8f9fa;
-            --accent: #e6f0ff;
-            --text: #333;
-            --nav-bg: #f1f1f1;
+            --primary-dark: #1a1a2e;
+            --primary-accent: #16213e;
+            --secondary: #0f3460;
+            --accent-bright: #e94560;
+            --accent-gold: #ffd700;
+            --text-light: #f5f5f5;
+            --text-muted: #b0b0b0;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
         }
-        body {
-            font-family: Helvetica, Arial, sans-serif;
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
             line-height: 1.6;
         }
 
-        header {
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky;
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--primary-dark);
         }
 
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(233, 69, 96, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(118, 75, 162, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
         }
 
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: var(--primary);
-            text-decoration: none;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(1deg); }
+            66% { transform: translateY(10px) rotate(-1deg); }
         }
 
-        nav {
-            background-color: white;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 20px;
-            position: relative;
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 15px 30px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        .navbar:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(-50%) scale(1.02);
         }
 
         .menu-container {
             display: flex;
-            align-items: center;
-            gap: 30px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
+            justify-content: center;
         }
 
         .menu-links {
             display: flex;
-            gap: 30px;
             list-style: none;
+            gap: 30px;
+            align-items: center;
+            margin: 0;
             padding: 0;
-            margin: 0;
         }
 
-        .menu-links li {
-            margin: 0;
-        }
-
-        nav a {
+        .menu-links a {
+            color: var(--text-light);
             text-decoration: none;
-            color: var(--primary);
-            white-space: nowrap;
-            display: block;
-            padding: 5px 0;
             font-weight: 500;
+            transition: all 0.3s ease;
             position: relative;
-            transition: color 0.3s;
+            padding: 8px 16px;
+            border-radius: 25px;
+            white-space: nowrap;
+            display: inline-block;
         }
 
-        nav a:hover {
-            color: var(--secondary);
+        .menu-links a:hover {
+            color: var(--accent-bright);
+            background: rgba(233, 69, 96, 0.1);
         }
 
-        nav a::after {
+        .menu-links a.active {
+            background: var(--accent-bright);
+            color: white;
+        }
+
+        /* Hero Section for Research Page */
+        .research-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 120px 20px 60px;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+            position: relative;
+            transform: translateZ(0);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 8px 20px;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+            color: var(--accent-gold);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+            to { box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); }
+        }
+
+        .page-title {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-light), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            will-change: transform;
+        }
+
+        .page-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Research Areas Section */
+        .research-section {
+            padding: 60px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .research-area-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            transform: translateZ(0);
+        }
+
+        .research-area-card::before {
             content: '';
             position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
+            top: 0;
             left: 0;
-            background-color: var(--secondary);
-            transition: width 0.3s;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .dropdown {
-            position: relative;
-            display: none;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
             right: 0;
-            top: 100%;
-            background-color: white;
-            min-width: 200px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            height: 4px;
+            background: var(--gradient-1);
+            opacity: 0.8;
+        }
+
+        .research-area-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-bright);
+        }
+
+        .research-area-card:nth-child(even)::before {
+            background: var(--gradient-2);
+        }
+
+        .research-area-card:nth-child(3n)::before {
+            background: var(--gradient-3);
+        }
+
+        .area-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .area-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-bright);
+            border-radius: 2px;
+        }
+
+        .area-description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            text-align: justify;
+        }
+
+        /* Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--accent-bright);
+        }
+
+        .project-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.2);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--accent-bright) 0%, transparent 70%);
+            opacity: 0.1;
+            transform: translateX(50px) translateY(-50px);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-meta i {
+            color: var(--accent-bright);
+        }
+
+        .project-description {
+            color: var(--text-muted);
+            line-height: 1.7;
+            text-align: justify;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Research Highlights Section */
+        .highlights-section {
+            padding: 80px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
             z-index: 1;
-            border-radius: 4px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .highlight-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            position: relative;
+            transform: translateZ(0);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .highlight-icon {
+            background: var(--gradient-3);
+            padding: 30px;
+            text-align: center;
+            position: relative;
             overflow: hidden;
         }
 
-        .dropdown-content a {
-            padding: 12px 16px;
-            border-bottom: 1px solid #eee;
+        .highlight-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s ease-in-out infinite;
         }
 
-        .dropdown-content a:last-child {
-            border-bottom: none;
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%); }
+            100% { transform: translateX(100%) translateY(100%); }
         }
 
-        .dropdown.active .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-button {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--primary);
-        }
-
-        .hamburger {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--primary);
-            background: none;
-            border: none;
-        }
-        .container {
-            padding: 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
-        .page-title {
-            color: #004080;
-            border-bottom: 2px solid #004080;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-        .research-area {
-            margin-bottom: 40px;
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .research-area h2 {
-            color: #004080;
-            margin-top: 0;
-        }
-        .research-area p {
-            line-height: 1.6;
-            text-align: justify; /* Added text-align: justify for the research area paragraphs */
-        }
-        .project {
-            margin-top: 20px;
-            padding-left: 20px;
-            border-left: 3px solid #004080;
-        }
-        .project h3 {
-            color: #333;
-            margin-bottom: 5px;
-        }
-        .project-meta {
-            font-style: italic;
-            color: #666;
-            margin-bottom: 10px;
-        }
-        .project p {
-            text-align: justify; /* Added text-align: justify for project paragraphs */
-        }
-        footer {
-            background-color: #004080;
+        .highlight-icon i {
+            font-size: 3rem;
             color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .highlight-content {
+            padding: 30px;
+        }
+
+        .highlight-content h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .highlight-content p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+         .footer {
+            background: var(--primary-accent);
+            padding: 60px 20px 30px;
             text-align: center;
-            padding: 10px;
-            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        /* Base responsive breakpoints */
-         @media (max-width: 992px) {
-            .menu-links li:nth-child(n+5) {
-                display: none;
-            }
-            .dropdown {
-                display: block;
-            }
-             .bio-section {
-                flex-direction: column-reverse;
-                align-items: center;
-            }
-            .bio-right {
-                position: static;
-                margin-bottom: 40px;
-                width: 100%;
-                max-width: 400px;
-            }
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0.1;
         }
 
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--text-muted);
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-bright);
+        }
+
+        .copyright {
+            border-top: 1px solid var(--glass-border);
+            padding-top: 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .menu-links li:nth-child(n+4) {
-                display: none;
-            }
-             .hero {
-                padding: 60px 0;
-            }
-            .hero h1 {
-                font-size: 2.2em;
-            }
-            .research-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-        }
-
-        @media (max-width: 576px) {
-            .menu-links li:nth-child(n+3) {
-                display: none;
-            }
-             .container {
-                padding: 30px 15px;
-            }
-            .hero {
-                padding: 40px 0;
-            }
-            .hero h1 {
-                font-size: 1.8em;
-            }
-            .section-title {
-                font-size: 1.5em;
-            }
-        }
-
-        @media (max-width: 450px) {
-            .menu-links li:nth-child(n+2) {
-                display: none;
-            }
-             .header-container {
-                height: 60px;
-            }
-            .logo {
-                font-size: 1.3rem;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .menu-links {
-                display: none;
-            }
-            .hamburger {
-                display: block;
-            }
-            nav.responsive .menu-links {
-                display: flex;
-                position: absolute;
-                top: 100%;
-                right: 0;
-                flex-direction: column;
-                background-color: white;
-                gap: 0;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                min-width: 200px;
-                z-index: 2;
-                border-radius: 4px;
-            }
-            nav.responsive .menu-links li {
-                display: block;
-            }
-            nav.responsive .menu-links a {
+            .navbar {
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                transform: none;
                 padding: 12px 20px;
-                border-bottom: 1px solid #eee;
+                width: calc(100% - 20px);
             }
-            .dropdown {
-                display: none;
+
+            .menu-links {
+                gap: 15px;
+                font-size: 0.9rem;
+                justify-content: center;
+                flex-wrap: wrap;
             }
-            nav.responsive .dropdown {
-                display: none;
+
+            .menu-links a {
+                padding: 6px 12px;
             }
+
+            .research-hero {
+                padding-top: 100px;
+                min-height: 50vh;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .research-area-card {
+                padding: 30px 20px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .highlights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .area-description,
+            .project-description {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-links {
+                gap: 8px;
+            }
+
+            .menu-links a {
+                padding: 4px 8px;
+                font-size: 0.8rem;
+            }
+
+            .research-area-card {
+                padding: 25px 15px;
+            }
+
+            .project-card {
+                padding: 20px;
+            }
+
+            .highlight-content {
+                padding: 20px;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            will-change: transform, opacity;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-bright);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-gold);
         }
     </style>
-<header>
-    <div class="header-container">
-        <a href="index.html" class="logo">Anmol</a>
-        <nav>
-            <div class="menu-container">
-                <ul class="menu-links">
-                  <li><a href="index.html">Home</a></li>
-            <li><a href="research.html">Research</a></li>
-            <li><a href="publications.html">Publications</a></li>
-           <!-- <li><a href="conferences.html">Conferences</a></li>
-            <li><a href="gallery.html">Gallery</a></li> -->
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="CV.html">CV</a></li>
-                </ul>
-                <div class="dropdown">
-                    <button class="dropdown-button" onclick="toggleDropdown()">⋮</button>
-                    <div class="dropdown-content" id="menuDropdown">
-                        </div>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="menu-container">
+            <ul class="menu-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="research.html" class="active">Research</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="CV.html">CV</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="research-hero">
+        <div class="hero-content fade-in">
+            <div class="hero-badge">
+                <i class="fas fa-flask"></i> Advanced Computational Research
+            </div>
+            <h1 class="page-title">Research</h1>
+            <p class="page-subtitle">
+                Exploring the frontiers of computational chemistry through machine learning potentials, 
+                enhanced sampling simulations, and quantum mechanical methods
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Research Section -->
+    <section class="research-section">
+        <div class="research-area-card fade-in">
+            <h2 class="area-title">Machine Learning Potentials for Atomistic Systems</h2>
+            <p class="area-description">
+                My research focuses on the development and application of machine learning potentials augmented with enhanced sampling simulations for atomistic systems and condensed phase reactive systems. This interdisciplinary approach combines the accuracy of quantum mechanical methods with the computational efficiency required for large-scale molecular simulations.
+            </p>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3 class="project-title">Chemical Reaction Modelling in Explicit Solvent</h3>
+                    <div class="project-meta">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>2023 - Present</span>
+                        <i class="fas fa-user-graduate"></i>
+                        <span>PhD Research</span>
+                    </div>
+                    <p class="project-description">
+                        We have developed a deep learning-based active learning strategy to create ab initio level accurate machine-learned (ML) potentials for solution-phase reactive systems. Using these ML potentials, we perform enhanced sampling simulations to efficiently sample reaction processes. Multiple transitions between reactant and product states enable us to calculate converged free energy surfaces for chemical reactions.
+                        <br><br>
+                        As a prototypical example, we investigated the Menshutkin reaction, a classic bimolecular nucleophilic substitution reaction (SN2) in aqueous medium. Our analyses revealed that water stabilizes the ionic product state through enhanced solvation, facilitating the reaction and making it more spontaneous. This approach significantly expands the scope of studying chemical reactions under realistic conditions, such as explicit solvents at finite temperatures, closely mimicking experimental conditions.
+                    </p>
                 </div>
             </div>
-            <button class="hamburger" onclick="toggleMenu()">☰</button>
-        </nav>
-    </div>
-</header>
-
-<div class="container">
-    <h1 class="page-title">Research</h1>
-    
-    <div class="research-area">
-        <h2>Machine Learning Potentials for Atomistic Systems.</h2>
-        <p>My research focuses on the use of machine learning potentials augmented with enhanced sampling simulations for atomistic systems and condensed phase reactive systems.</p>
-        
-        <div class="project">
-            <h3>Chemical Reaction Modelling in Explicit Solvent.</h3>
-            <!--<div class="project-meta">2023 - Present | Funded by National Science Foundation</div>-->
-            <p>The modeling of chemical reactions is a crucial and complex task in computational chemistry. Understanding the electronic-level description of the underlying mechanism and dynamics of the reactions helps in developing new methodologies for producing bulk and fine chemicals.
-
-Ab initio molecular dynamics (AIMD) simulations are frequently regarded as the gold standard for investigating chemical reactions at the electronic level. To articulate and draw crucial conclusions from the mechanistic aspects of a chemical reaction in the solution phase, an explicit description of the solvent is necessary rather than an implicit one. Unlike gas-phase reactions, where collisions between reactant molecules solely determine the reaction pathway, in the solution phase, solvents modulate the chemical reaction in many possible ways. Therefore, an in-depth understanding of the molecular-level details of the solute–solvent interactions mediating solution-phase chemical reactions is crucial for reaction design and solvent optimization.
-
-However, equilibrium AIMD simulations are limited in their ability to study systems over longer timescales and sample processes such as chemical reactions that involve high-barrier kinetic bottlenecks. AIMD simulations in combination with collective variable (CV)-based enhanced sampling (ES) techniques, such as metadynamics and on-the-fly probability-based enhanced sampling (OPES), are used to alleviate the timescale limitation and sample the reactant-to-product transition.
-
-An essential criterion for constructing a converged free energy surface (FES) from a CV-based enhanced sampling method is that the system should efficiently sample the metastable states with multiple barrier-recrossing events from reactant to product states in the case of a chemical reaction. This requirement demands much longer biased simulation times, in the order of nanoseconds, which AIMD simulations cannot easily achieve. Despite the considerable progress in both computational methods and computing resources over the years, it is still a formidable task to study chemical reactions in the condensed phase and investigate the solvent’s role in chemical reactions. Consequently, there is a pressing need for methods that can offer ab initio accuracy while being computationally more affordable.
-
-One way of avoiding expensive AIMD simulations, as proposed by Behler and Parrinello in 2007, is to employ a neural network (NN) to construct the underlying potential energy surface (PES). Training the NN with a set of configurations using DFT-calculated energies and forces accomplishes this. A neural network potential obtained this way provides ab initio quality properties of a system and is nearly as computationally fast as empirical force fields. Over the past few years, numerous research groups have made remarkable advancements in the development of machine learning (ML) potentials for various systems, ranging from simple fluids to solution mixtures and complex materials. Hence, ML potentials offer great potential for investigating chemical reactions in explicit solvents.</p>
         </div>
-        
-        <!--<div class="project">
-            <h3>Explainable AI for Healthcare Decision Support</h3>
-            <div class="project-meta">2021 - Present | Collaboration with University Medical Center</div>
-            <p>We are developing interpretable machine learning models that assist medical professionals in diagnostic processes while providing clear explanations for their recommendations. This work aims to bridge the gap between high-performance black-box models and the need for transparency in critical healthcare applications.</p>
-        </div>-->
-    </div>
-    
-    <!--<div class="research-area">
-        <h2>Data Science & Computational Methods</h2>
-        <p>My work in data science focuses on developing novel computational methods for analyzing complex, high-dimensional data across multiple domains.</p>
-        
-        <div class="project">
-            <h3>Bayesian Methods for Uncertainty Quantification</h3>
-            <div class="project-meta">2022 - Present | Industry Partnership</div>
-            <p>This research explores advanced Bayesian techniques for accurately quantifying uncertainty in machine learning predictions. Applications include risk assessment in financial modeling and reliability engineering.</p>
-        </div>
-        
-        <div class="project">
-            <h3>Large-Scale Graph Neural Networks</h3>
-            <div class="project-meta">2020 - 2023 | Multi-University Collaboration</div>
-            <p>We developed scalable graph neural network architectures capable of learning from massive network datasets with billions of nodes and edges. This work has applications in social network analysis, protein interaction networks, and recommendation systems.</p>
-        </div>
-    </div>
-    
-    <div class="research-area">
-        <h2>Interdisciplinary Applications</h2>
-        <p>I believe in the power of AI to transform other scientific disciplines and tackle pressing societal challenges.</p>
-        
-        <div class="project">
-            <h3>AI for Climate Science</h3>
-            <div class="project-meta">2023 - Present | International Research Initiative</div>
-            <p>This project applies deep learning to climate data for improved prediction of extreme weather events and better understanding of climate change patterns. We work closely with climate scientists to ensure our models respect physical constraints and domain knowledge.</p>
-        </div>
-        
-        <div class="project">
-            <h3>Computational Social Science</h3>
-            <div class="project-meta">2021 - Present | Cross-Disciplinary Collaboration</div>
-            <p>We are developing computational methods to analyze large-scale social data, including social media interactions, mobility patterns, and economic indicators, to better understand complex social phenomena and inform policy decisions.</p>
-        </div>
-    </div>-->
-</div>
+    </section>
 
-<footer>
-    <p>Anmol | IIT Delhi</p>
-</footer>
+    <!-- Research Highlights -->
+    <section class="highlights-section">
+        <h2 class="section-title">Research Highlights</h2>
+        <div class="highlights-grid">
+            <div class="highlight-card fade-in">
+                <div class="highlight-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="highlight-content">
+                    <h3>Machine Learning Integration</h3>
+                    <p>Developing novel deep learning approaches for creating accurate interatomic potentials that maintain quantum mechanical precision while enabling large-scale simulations.</p>
+                </div>
+            </div>
 
-<script>
-    function toggleMenu() {
-        const nav = document.querySelector('nav');
-        nav.classList.toggle('responsive');
-    }
-    
-    function toggleDropdown() {
-        const dropdown = document.querySelector('.dropdown');
-        dropdown.classList.toggle('active');
-    }
-    
-    // Function to manage which menu items are visible and which are in dropdown
-    function updateMenuItems() {
-        const menuLinks = document.querySelectorAll('.menu-links li');
-        const dropdownContent = document.getElementById('menuDropdown');
-        
-        // Clear the dropdown
-        dropdownContent.innerHTML = '';
-        
-        // Check which items are hidden and add them to dropdown
-        menuLinks.forEach((item, index) => {
-            if (window.getComputedStyle(item).display === 'none') {
-                const link = item.querySelector('a').cloneNode(true);
-                dropdownContent.appendChild(link);
-            }
+            <div class="highlight-card fade-in">
+                <div class="highlight-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="highlight-content">
+                    <h3>Enhanced Sampling Methods</h3>
+                    <p>Implementing advanced enhanced sampling techniques like metadynamics to explore rare events and calculate free energy landscapes of complex chemical processes.</p>
+                </div>
+            </div>
+
+            <div class="highlight-card fade-in">
+                <div class="highlight-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="highlight-content">
+                    <h3>Reactive System Modeling</h3>
+                    <p>Studying chemical reaction mechanisms in realistic environments, including explicit solvent effects and finite temperature conditions that closely mimic experimental setups.</p>
+                </div>
+            </div>
+
+            <div class="highlight-card fade-in">
+                <div class="highlight-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="highlight-content">
+                    <h3>High-Performance Computing</h3>
+                    <p>Leveraging advanced computational resources and algorithms to bridge the gap between theoretical models and experimental observations at the molecular level.</p>
+                </div>
+            </div>
+
+            <div class="highlight-card fade-in">
+                <div class="highlight-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <div class="highlight-content">
+                    <h3>Quantum Chemistry Integration</h3>
+                    <p>Combining DFT calculations, ab initio molecular dynamics, and quantum mechanical methods to provide accurate descriptions of electronic structure and chemical bonding.</p>
+                </div>
+            </div>
+
+            <div class="highlight-card fade-in">
+                <div class="highlight-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <div class="highlight-content">
+                    <h3>Data-Driven Approaches</h3>
+                    <p>Implementing active learning strategies and efficient data sampling techniques to optimize training datasets for machine learning potential development with minimal computational cost.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+     <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Research Focus</h3>
+                    <p>Computational Chemistry • Molecular Dynamics • Machine Learning • Quantum Mechanics</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Institution</h3>
+                    <p>Indian Institute of Technology Delhi<br>Department of Chemistry</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <p>
+                        <a href="https://github.com/anmol-compchem">GitHub</a> •
+                        <a href="https://scholar.google.com/citations?user=sMwC6hIAAAAJ&hl=en">Google Scholar</a> •
+                        <a href="https://orcid.org/0000-0002-0966-6496">ORCID</a>
+                    </p>
+                </div>
+            </div>
+
+    <script>
+        // Loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
         });
-        
-        // Hide dropdown if no items are in it
-        const dropdown = document.querySelector('.dropdown');
-        if (dropdownContent.children.length === 0) {
-            dropdown.style.display = 'none';
-        } else {
-            dropdown.style.display = 'block';
-        }
-    }
-    
-    // Run on load and on window resize
-    window.addEventListener('load', updateMenuItems);
-    window.addEventListener('resize', updateMenuItems);
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function(event) {
-        const dropdown = document.querySelector('.dropdown');
-        const dropdownButton = document.querySelector('.dropdown-button');
-        
-        if (!dropdown.contains(event.target) && event.target !== dropdownButton) {
-            dropdown.classList.remove('active');
-        }
-    });
-</script>
 
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover effect to cards
+        document.querySelectorAll('.research-area-card, .project-card, .highlight-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform += ' scale(1.01)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = this.style.transform.replace(' scale(1.01)', '');
+            });
+        });
+    </script>
 </body>
 </html>
