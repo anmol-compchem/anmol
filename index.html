@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Anmol | Computational Chemistry Research</title>
+    <title>Anmol | Computational Chemistry Research</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -66,33 +66,60 @@
             66% { transform: translateY(10px) rotate(-1deg); }
         }
 
-        /* Navigation - Fixed positioning issues */
+        /* Mobile-First Navigation */
         .navbar {
             position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 0;
+            left: 0;
+            right: 0;
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            padding: 15px 30px;
+            border-bottom: 1px solid var(--glass-border);
+            padding: 12px 20px;
             z-index: 1000;
             transition: all 0.3s ease;
-            /* Prevent text overlap during scroll */
-            will-change: transform;
-            backface-visibility: hidden;
         }
 
-        .navbar:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateX(-50%) scale(1.02);
-        }
-
-        /* Fixed menu structure for separate pages */
-        .menu-container {
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
         }
 
         .menu-links {
@@ -113,7 +140,6 @@
             padding: 8px 16px;
             border-radius: 25px;
             white-space: nowrap;
-            /* Prevent text wrapping and overlap */
             display: inline-block;
         }
 
@@ -127,7 +153,7 @@
             color: white;
         }
 
-        /* Hero Section - Fixed positioning and layering */
+        /* Hero Section - Mobile Optimized */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -135,8 +161,7 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            padding: 0 20px;
-            /* Ensure proper stacking context */
+            padding: 80px 20px 40px;
             z-index: 1;
         }
 
@@ -144,8 +169,7 @@
             max-width: 900px;
             z-index: 2;
             position: relative;
-            /* Prevent overlap during scroll animations */
-            transform: translateZ(0);
+            width: 100%;
         }
 
         .hero-badge {
@@ -167,7 +191,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 8vw, 4rem);
             font-weight: 800;
             margin-bottom: 20px;
             background: linear-gradient(135deg, var(--text-light), var(--accent-gold));
@@ -175,22 +199,21 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1.2;
-            /* Fix for gradient text rendering */
-            will-change: transform;
+            word-wrap: break-word;
         }
 
         .hero-subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-size: clamp(1rem, 4vw, 1.4rem);
             color: var(--text-muted);
             margin-bottom: 40px;
-            max-width: 600px;
+            max-width: 100%;
             margin-left: auto;
             margin-right: auto;
         }
 
         .hero-cta {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -204,6 +227,8 @@
             position: relative;
             overflow: hidden;
             display: inline-block;
+            min-width: 150px;
+            text-align: center;
         }
 
         .btn-primary {
@@ -224,9 +249,9 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        /* Profile Section - Fixed overlap issues */
+        /* Profile Section - Mobile Responsive Grid */
         .profile-section {
-            padding: 100px 20px;
+            padding: 60px 20px;
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
@@ -235,8 +260,8 @@
 
         .profile-grid {
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 60px;
+            grid-template-columns: 1fr;
+            gap: 40px;
             align-items: center;
         }
 
@@ -245,11 +270,10 @@
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
-            padding: 40px;
+            padding: 30px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            /* Prevent content overflow during animations */
             transform: translateZ(0);
         }
 
@@ -272,10 +296,10 @@
         }
 
         .profile-image {
-            width: 180px;
-            height: 180px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            margin: 0 auto 30px;
+            margin: 0 auto 25px;
             position: relative;
             overflow: hidden;
             border: 4px solid var(--accent-gold);
@@ -289,7 +313,7 @@
         }
 
         .profile-name {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 5vw, 2rem);
             font-weight: 700;
             margin-bottom: 10px;
             background: var(--gradient-2);
@@ -300,7 +324,7 @@
 
         .profile-title {
             color: var(--accent-gold);
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
             margin-bottom: 20px;
         }
 
@@ -311,26 +335,33 @@
             gap: 10px;
             margin-bottom: 30px;
             color: var(--text-muted);
+            flex-wrap: wrap;
         }
 
         .institution img {
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             filter: brightness(0) invert(1);
+        }
+
+        .institution span {
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            text-align: center;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
             gap: 15px;
+            flex-wrap: wrap;
         }
 
         .social-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 50%;
@@ -351,13 +382,14 @@
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
             font-weight: 700;
             margin-bottom: 30px;
             background: var(--gradient-1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-align: center;
         }
 
         .tags-container {
@@ -365,6 +397,7 @@
             flex-wrap: wrap;
             gap: 12px;
             margin-bottom: 30px;
+            justify-content: center;
         }
 
         .tag {
@@ -372,21 +405,22 @@
             color: white;
             padding: 8px 16px;
             border-radius: 25px;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             font-weight: 500;
             box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
         }
 
         .bio-text {
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
             line-height: 1.8;
             color: var(--text-muted);
             margin-bottom: 25px;
+            text-align: left;
         }
 
-        /* Research Section - Fixed stacking context */
+        /* Research Section - Mobile Grid */
         .research-section {
-            padding: 100px 20px;
+            padding: 60px 20px;
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
@@ -395,9 +429,9 @@
 
         .research-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .research-card {
@@ -412,8 +446,8 @@
         }
 
         .research-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
         .research-card::before {
@@ -427,7 +461,7 @@
         }
 
         .research-image {
-            height: 250px;
+            height: 200px;
             overflow: hidden;
             position: relative;
         }
@@ -440,28 +474,30 @@
         }
 
         .research-card:hover .research-image img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .research-content {
-            padding: 30px;
+            padding: 25px;
         }
 
         .research-content h3 {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 4vw, 1.3rem);
             font-weight: 600;
             margin-bottom: 15px;
             color: var(--text-light);
+            line-height: 1.4;
         }
 
         .research-content p {
             color: var(--text-muted);
             line-height: 1.6;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
         }
 
-        /* Publications Section - Fixed positioning */
+        /* Publications Section - Mobile Optimized */
         .publications-section {
-            padding: 100px 20px;
+            padding: 60px 20px;
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
@@ -469,7 +505,7 @@
         }
 
         .publications-container {
-            margin-top: 60px;
+            margin-top: 40px;
         }
 
         .publication-card {
@@ -477,8 +513,8 @@
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 15px;
-            padding: 35px;
-            margin-bottom: 30px;
+            padding: 25px;
+            margin-bottom: 25px;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -502,17 +538,18 @@
         }
 
         .publication-card:hover {
-            transform: translateX(10px);
+            transform: translateY(-3px);
             border-color: var(--accent-bright);
         }
 
         .publication-title {
-            font-size: 1.4rem;
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
             font-weight: 600;
             color: var(--text-light);
             margin-bottom: 15px;
             position: relative;
             z-index: 2;
+            line-height: 1.4;
         }
 
         .publication-authors {
@@ -521,12 +558,13 @@
             margin-bottom: 15px;
             position: relative;
             z-index: 2;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
         }
 
         .publication-meta {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
             margin-bottom: 20px;
             position: relative;
@@ -538,6 +576,8 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            flex: 1;
         }
 
         .pub-link {
@@ -549,9 +589,10 @@
             padding: 8px 16px;
             border-radius: 25px;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             font-weight: 500;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
         .pub-link:hover {
@@ -560,10 +601,10 @@
             transform: scale(1.05);
         }
 
-        /* Footer - Fixed positioning */
+        /* Footer - Mobile Responsive */
         .footer {
             background: var(--primary-accent);
-            padding: 60px 20px 30px;
+            padding: 40px 20px 20px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -590,21 +631,22 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
         }
 
         .footer-section h3 {
             color: var(--accent-gold);
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            margin-bottom: 15px;
         }
 
         .footer-section p, .footer-section a {
             color: var(--text-muted);
             text-decoration: none;
             line-height: 1.6;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
         }
 
         .footer-section a:hover {
@@ -615,101 +657,184 @@
             border-top: 1px solid var(--glass-border);
             padding-top: 20px;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
         }
 
-        /* Mobile Responsive - Fixed navbar issues */
+        /* Mobile Navigation Menu */
         @media (max-width: 768px) {
-            .navbar {
-                position: fixed;
-                top: 10px;
-                left: 10px;
-                right: 10px;
-                transform: none;
-                padding: 12px 20px;
-                width: calc(100% - 20px);
+            .menu-toggle {
+                display: flex;
             }
 
             .menu-links {
-                gap: 15px;
-                font-size: 0.9rem;
-                justify-content: center;
-                flex-wrap: wrap;
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                height: calc(100vh - 60px);
+                background: var(--primary-accent);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 0;
+                padding: 40px 20px;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+                backdrop-filter: blur(20px);
+                border-top: 1px solid var(--glass-border);
+            }
+
+            .menu-links.active {
+                transform: translateY(-100vh);
+            }
+
+            .menu-links li {
+                width: 100%;
+                margin-bottom: 20px;
             }
 
             .menu-links a {
-                padding: 6px 12px;
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 15px 20px;
+                font-size: 1.1rem;
+                border-radius: 10px;
+                background: var(--glass-bg);
+                border: 1px solid var(--glass-border);
             }
 
             .profile-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
                 text-align: center;
             }
 
-            .hero {
-                padding-top: 100px;
-            }
-
-            .section-title {
-                font-size: 2rem;
+            .bio-text {
+                text-align: center;
             }
 
             .research-grid {
                 grid-template-columns: 1fr;
             }
-        }
 
-        @media (max-width: 480px) {
-            .menu-links {
-                gap: 8px;
+            .publication-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
             }
 
-            .menu-links a {
-                padding: 4px 8px;
-                font-size: 0.8rem;
+            .publication-journal {
+                width: 100%;
+            }
+
+            .pub-link {
+                align-self: flex-start;
+            }
+        }
+
+        /* Large Desktop View */
+        @media (min-width: 1024px) {
+            .profile-grid {
+                grid-template-columns: 1fr 2fr;
+                gap: 60px;
+            }
+
+            .bio-text {
+                text-align: left;
+            }
+
+            .section-title {
+                text-align: left;
+            }
+
+            .tags-container {
+                justify-content: flex-start;
+            }
+
+            .research-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px;
+                text-align: left;
+            }
+
+            .navbar {
+                top: 20px;
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                border-radius: 50px;
+                border: 1px solid var(--glass-border);
+                border-bottom: 1px solid var(--glass-border);
+                padding: 15px 30px;
+                width: auto;
+            }
+
+            .nav-container {
+                width: auto;
+            }
+
+            .nav-logo {
+                display: none;
+            }
+        }
+
+        /* Extra Small Devices */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 100px 15px 30px;
+                min-height: 90vh;
             }
 
             .hero-cta {
                 flex-direction: column;
                 align-items: center;
+                gap: 15px;
             }
 
             .btn {
                 width: 100%;
-                max-width: 250px;
+                max-width: 280px;
+                padding: 12px 25px;
+            }
+
+            .profile-card, .research-content, .publication-card {
+                padding: 20px;
+            }
+
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .research-image {
+                height: 180px;
+            }
+
+            .social-links {
+                gap: 12px;
+            }
+
+            .social-link {
+                width: 40px;
+                height: 40px;
             }
         }
 
-        /* Scroll animations - Improved to prevent overlap */
+        /* Fade-in animations - Performance optimized */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-            will-change: transform, opacity;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
         }
 
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--primary-dark);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-bright);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-gold);
         }
 
         /* Loading animation */
@@ -724,30 +849,48 @@
             transition: width 0.3s ease;
         }
 
-        /* Ensure content is visible by default */
-        .hero-content,
-        .profile-section,
-        .research-section,
-        .publications-section {
-            opacity: 1;
-            visibility: visible;
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
         }
 
-        /* Override fade-in initial state for critical content */
-        .hero .fade-in {
-            opacity: 1;
-            transform: translateY(0);
+        ::-webkit-scrollbar-track {
+            background: var(--primary-dark);
         }
 
-        /* Fix for performance and overlap prevention */
-        .hero, .profile-section, .research-section, .publications-section {
-            contain: layout style paint;
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-bright);
+            border-radius: 3px;
         }
 
-        /* Fix parallax effect to prevent overlap */
-        .parallax-element {
-            transform: translate3d(0, 0, 0);
-            will-change: transform;
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-gold);
+        }
+
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --text-muted: #ffffff;
+                --glass-border: rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        /* Ensure touch targets are at least 44px */
+        .social-link,
+        .pub-link,
+        .btn,
+        .menu-links a {
+            min-height: 44px;
+            min-width: 44px;
         }
     </style>
 </head>
@@ -755,9 +898,16 @@
     <div class="bg-animation"></div>
     <div class="loading-bar" id="loadingBar"></div>
 
+    <!-- Mobile-Responsive Navigation -->
     <nav class="navbar">
-        <div class="menu-container">
-            <ul class="menu-links">
+        <div class="nav-container">
+            <div class="nav-logo">Anmol</div>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="menu-links" id="menuLinks">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="research.html">Research</a></li>
                 <li><a href="publications.html">Publications</a></li>
@@ -767,6 +917,7 @@
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content fade-in">
             <div class="hero-badge">
@@ -774,7 +925,7 @@
             </div>
             <h1>उद्यमेन हि सिध्यन्ति कार्याणि न मनोरथैः</h1>
             <p class="hero-subtitle">
-               
+                Exploring molecular mysteries through computational excellence and innovative research methodologies.
             </p>
             <div class="hero-cta">
                 <a href="research.html" class="btn btn-primary">
@@ -787,6 +938,7 @@
         </div>
     </section>
 
+    <!-- Profile Section -->
     <section id="about" class="profile-section">
         <div class="profile-grid">
             <div class="profile-card">
@@ -800,13 +952,13 @@
                     <span>Indian Institute of Technology Delhi</span>
                 </div>
                 <div class="social-links">
-                    <a href="https://github.com/anmol-compchem" target="_blank" class="social-link">
+                    <a href="https://github.com/anmol-compchem" target="_blank" class="social-link" aria-label="GitHub Profile">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://scholar.google.com/citations?user=sMwC6hIAAAAJ&hl=en" target="_blank" class="social-link">
+                    <a href="https://scholar.google.com/citations?user=sMwC6hIAAAAJ&hl=en" target="_blank" class="social-link" aria-label="Google Scholar Profile">
                         <i class="fas fa-graduation-cap"></i>
                     </a>
-                    <a href="https://orcid.org/0000-0002-0966-6496" target="_blank" class="social-link">
+                    <a href="https://orcid.org/0000-0002-0966-6496" target="_blank" class="social-link" aria-label="ORCID Profile">
                         <i class="fab fa-orcid"></i>
                     </a>
                 </div>
@@ -841,8 +993,9 @@
         </div>
     </section>
 
+    <!-- Research Section -->
     <section id="research" class="research-section">
-        <h2 class="section-title" style="text-align: center;">Research Highlights</h2>
+        <h2 class="section-title">Research Highlights</h2>
         <div class="research-grid">
             <div class="research-card">
                 <div class="research-image">
@@ -866,8 +1019,9 @@
         </div>
     </section>
 
+    <!-- Publications Section -->
     <section id="publications" class="publications-section">
-        <h2 class="section-title" style="text-align: center;">Key Publications</h2>
+        <h2 class="section-title">Key Publications</h2>
         <div class="publications-container">
             <div class="publication-card">
                 <h3 class="publication-title">Unveiling the Role of Solvent in Solution Phase Chemical Reactions using Deep Potential-Based Enhanced Sampling Simulations</h3>
@@ -877,7 +1031,7 @@
                         <i class="fas fa-book-open"></i>
                         Journal of Physical Chemistry Letters 2024
                     </span>
-                    <a href="https://pubs.acs.org/doi/full/10.1021/acs.jpclett.4c02224" target="_blank" class="pub-link">
+                    <a href="https://pubs.acs.org/doi/full/10.1021/acs.jpclett.4c02224" target="_blank" class="pub-link" aria-label="View Publication">
                         <i class="fas fa-external-link-alt"></i> View Publication
                     </a>
                 </div>
@@ -891,7 +1045,7 @@
                         <i class="fas fa-book-open"></i>
                         Journal of Chemical Theory and Computation 2025
                     </span>
-                    <a href="https://pubs.acs.org/doi/full/10.1021/acs.jctc.5c00366" target="_blank" class="pub-link">
+                    <a href="https://pubs.acs.org/doi/full/10.1021/acs.jctc.5c00366" target="_blank" class="pub-link" aria-label="View Publication">
                         <i class="fas fa-external-link-alt"></i> View Publication
                     </a>
                 </div>
@@ -899,6 +1053,7 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-grid">
@@ -919,7 +1074,161 @@
                     </p>
                 </div>
             </div>
+            <div class="copyright">
+                <p>&copy; 2025 Anmol. All rights reserved. Built with passion for computational chemistry research.</p>
+            </div>
         </div>
     </footer>
+
+    <!-- JavaScript for Mobile Navigation and Animations -->
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const menuLinks = document.getElementById('menuLinks');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            menuLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.menu-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                menuLinks.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !menuLinks.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                menuLinks.classList.remove('active');
+            }
+        });
+
+        // Loading bar animation
+        const loadingBar = document.getElementById('loadingBar');
+        
+        window.addEventListener('load', () => {
+            loadingBar.style.width = '100%';
+            setTimeout(() => {
+                loadingBar.style.opacity = '0';
+                setTimeout(() => {
+                    loadingBar.style.display = 'none';
+                }, 300);
+            }, 500);
+        });
+
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        const navbar = document.querySelector('.navbar');
+        let scrollTimeout;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(26, 26, 46, 0.95)';
+            } else {
+                navbar.style.background = 'var(--glass-bg)';
+            }
+        });
+
+        // Performance optimization: Throttle scroll events
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
+        }
+
+        // Add some interactive hover effects for cards
+        document.querySelectorAll('.research-card, .publication-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = window.innerWidth > 768 ? 'translateY(-8px) scale(1.01)' : 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Accessibility: Keyboard navigation for mobile menu
+        menuToggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                menuToggle.click();
+            }
+        });
+
+        // Handle orientation change on mobile devices
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                // Close mobile menu on orientation change
+                menuToggle.classList.remove('active');
+                menuLinks.classList.remove('active');
+                
+                // Trigger a resize event to recalculate layouts
+                window.dispatchEvent(new Event('resize'));
+            }, 100);
+        });
+
+        // Prevent zoom on double tap for better mobile UX
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // Add loading states for external links
+        document.querySelectorAll('a[target="_blank"]').forEach(link => {
+            link.addEventListener('click', function() {
+                this.style.opacity = '0.7';
+                setTimeout(() => {
+                    this.style.opacity = '1';
+                }, 1000);
+            });
+        });
+    </script>
 </body>
 </html>
