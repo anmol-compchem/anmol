@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Anmol - Research Scholar in Computational Chemistry at IIT Delhi. Specializing in molecular dynamics, machine learning, and enhanced sampling techniques.">
+    <meta name="keywords" content="computational chemistry, molecular dynamics, machine learning, research, IIT Delhi">
+    <meta name="author" content="Anmol">
     <title>Anmol | Computational Chemistry Research</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-dark: #1a1a2e;
@@ -27,12 +33,29 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--primary-dark);
             color: var(--text-light);
             overflow-x: hidden;
             line-height: 1.6;
+        }
+
+        /* Respect user's motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
 
         /* Animated background */
@@ -69,29 +92,27 @@
         /* Navigation - Mobile-first responsive design */
         .navbar {
             position: fixed;
-            top: 15px;
-            left: 15px;
-            right: 15px;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 25px;
-            padding: 12px 20px;
+            padding: 10px 15px;
             z-index: 1000;
             transition: all 0.3s ease;
-            will-change: transform;
-            backface-visibility: hidden;
+            width: calc(100% - 20px);
+            max-width: 600px;
         }
 
         .navbar:hover {
             background: rgba(255, 255, 255, 0.15);
-            transform: scale(1.01);
         }
 
         .menu-container {
             display: flex;
             justify-content: center;
-            align-items: center;
         }
 
         .menu-links {
@@ -109,19 +130,20 @@
             color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
             position: relative;
-            padding: 6px 12px;
-            border-radius: 15px;
+            padding: 8px 12px;
+            border-radius: 20px;
             white-space: nowrap;
             display: inline-block;
-            font-size: 0.85rem;
-            text-align: center;
         }
 
-        .menu-links a:hover {
+        .menu-links a:hover,
+        .menu-links a:focus {
             color: var(--accent-bright);
             background: rgba(233, 69, 96, 0.1);
+            outline: none;
         }
 
         .menu-links a.active {
@@ -129,7 +151,7 @@
             color: white;
         }
 
-        /* Hero Section - Mobile optimized */
+        /* Hero Section - Fully responsive */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -137,15 +159,13 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            padding: 80px 20px 0;
-            z-index: 1;
+            padding: 80px 15px 0;
         }
 
         .hero-content {
             max-width: 900px;
             z-index: 2;
             position: relative;
-            transform: translateZ(0);
             width: 100%;
         }
 
@@ -154,7 +174,7 @@
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
+            border-radius: 25px;
             padding: 8px 16px;
             margin-bottom: 20px;
             font-size: 0.8rem;
@@ -163,12 +183,12 @@
         }
 
         @keyframes glow {
-            from { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
-            to { box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); }
+            from { box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
+            to { box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); }
         }
 
         .hero h1 {
-            font-size: clamp(1.8rem, 6vw, 4rem);
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
             font-weight: 800;
             margin-bottom: 15px;
             background: linear-gradient(135deg, var(--text-light), var(--accent-gold));
@@ -176,17 +196,16 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1.2;
-            will-change: transform;
+            word-break: break-word;
         }
 
         .hero-subtitle {
-            font-size: clamp(1rem, 3vw, 1.4rem);
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             color: var(--text-muted);
             margin-bottom: 30px;
-            max-width: 100%;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.5;
         }
 
         .hero-cta {
@@ -194,7 +213,6 @@
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
-            width: 100%;
         }
 
         .btn {
@@ -202,15 +220,16 @@
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
-            font-size: 0.9rem;
             min-width: 140px;
+            justify-content: center;
+            cursor: pointer;
         }
 
         .btn-primary {
@@ -226,18 +245,19 @@
             backdrop-filter: blur(10px);
         }
 
-        .btn:hover {
+        .btn:hover,
+        .btn:focus {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            outline: none;
         }
 
-        /* Profile Section - Mobile optimized */
+        /* Profile Section - Mobile responsive grid */
         .profile-section {
-            padding: 60px 20px;
-            max-width: 1400px;
+            padding: 60px 15px;
+            max-width: 1200px;
             margin: 0 auto;
             position: relative;
-            z-index: 1;
         }
 
         .profile-grid {
@@ -256,7 +276,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            transform: translateZ(0);
+            order: 1;
         }
 
         .profile-card::before {
@@ -278,20 +298,36 @@
         }
 
         .profile-image {
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             margin: 0 auto 20px;
             position: relative;
             overflow: hidden;
             border: 3px solid var(--accent-gold);
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            background: var(--glass-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .profile-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .profile-image-fallback {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: var(--accent-gold);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .profile-name {
@@ -308,7 +344,6 @@
             color: var(--accent-gold);
             font-size: 1rem;
             margin-bottom: 15px;
-            line-height: 1.4;
         }
 
         .institution {
@@ -318,19 +353,23 @@
             gap: 8px;
             margin-bottom: 25px;
             color: var(--text-muted);
-            flex-wrap: wrap;
-            text-align: center;
-        }
-
-        .institution img {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
-        }
-
-        .institution span {
             font-size: 0.9rem;
-            line-height: 1.3;
+            flex-wrap: wrap;
+        }
+
+        .institution-logo {
+            width: 25px;
+            height: 25px;
+            filter: brightness(0) invert(1);
+            transition: opacity 0.3s ease;
+        }
+
+        .institution-logo-fallback {
+            width: 25px;
+            height: 25px;
+            background: var(--accent-gold);
+            border-radius: 3px;
+            display: none;
         }
 
         .social-links {
@@ -344,29 +383,32 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 50%;
             color: var(--text-light);
             text-decoration: none;
             transition: all 0.3s ease;
+            font-size: 1.1rem;
         }
 
-        .social-link:hover {
+        .social-link:hover,
+        .social-link:focus {
             background: var(--accent-bright);
-            transform: translateY(-3px) scale(1.05);
+            transform: translateY(-3px) scale(1.1);
             box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
+            outline: none;
         }
 
         .bio-content {
             position: relative;
-            z-index: 1;
+            order: 2;
         }
 
         .section-title {
-            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
             font-weight: 700;
             margin-bottom: 25px;
             background: var(--gradient-1);
@@ -389,9 +431,9 @@
             color: white;
             padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 500;
-            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+            box-shadow: 0 3px 12px rgba(233, 69, 96, 0.3);
         }
 
         .bio-text {
@@ -402,13 +444,12 @@
             text-align: left;
         }
 
-        /* Research Section - Mobile optimized */
+        /* Research Section - Mobile responsive cards */
         .research-section {
-            padding: 60px 20px;
-            max-width: 1400px;
+            padding: 60px 15px;
+            max-width: 1200px;
             margin: 0 auto;
             position: relative;
-            z-index: 1;
         }
 
         .research-grid {
@@ -422,15 +463,14 @@
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
             transition: all 0.5s ease;
             position: relative;
-            transform: translateZ(0);
         }
 
         .research-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
@@ -440,7 +480,7 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 3px;
             background: var(--gradient-3);
         }
 
@@ -448,13 +488,25 @@
             height: 200px;
             overflow: hidden;
             position: relative;
+            background: var(--glass-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .research-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s ease, opacity 0.3s ease;
+        }
+
+        .research-image-fallback {
+            position: absolute;
+            font-size: 3rem;
+            color: var(--accent-gold);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .research-card:hover .research-image img {
@@ -479,13 +531,12 @@
             font-size: 0.95rem;
         }
 
-        /* Publications Section - Mobile optimized */
+        /* Publications Section - Mobile responsive */
         .publications-section {
-            padding: 60px 20px;
-            max-width: 1400px;
+            padding: 60px 15px;
+            max-width: 1200px;
             margin: 0 auto;
             position: relative;
-            z-index: 1;
         }
 
         .publications-container {
@@ -502,7 +553,6 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            transform: translateZ(0);
         }
 
         .publication-card::before {
@@ -522,7 +572,7 @@
         }
 
         .publication-card:hover {
-            transform: translateY(-3px);
+            transform: translateX(5px);
             border-color: var(--accent-bright);
         }
 
@@ -547,10 +597,9 @@
 
         .publication-meta {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 15px;
-            flex-direction: column;
-            margin-bottom: 15px;
+            flex-wrap: wrap;
             position: relative;
             z-index: 2;
         }
@@ -561,6 +610,8 @@
             align-items: center;
             gap: 6px;
             font-size: 0.9rem;
+            flex: 1;
+            min-width: 200px;
         }
 
         .pub-link {
@@ -569,29 +620,30 @@
             gap: 6px;
             background: var(--accent-bright);
             color: white;
-            padding: 8px 16px;
+            padding: 8px 14px;
             border-radius: 20px;
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 500;
             transition: all 0.3s ease;
-            align-self: flex-start;
+            white-space: nowrap;
         }
 
-        .pub-link:hover {
+        .pub-link:hover,
+        .pub-link:focus {
             background: var(--accent-gold);
             color: var(--primary-dark);
-            transform: scale(1.03);
+            transform: scale(1.05);
+            outline: none;
         }
 
-        /* Footer - Mobile optimized */
+        /* Footer - Mobile responsive */
         .footer {
             background: var(--primary-accent);
-            padding: 40px 20px 20px;
+            padding: 40px 15px 20px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            z-index: 1;
         }
 
         .footer::before {
@@ -606,7 +658,7 @@
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             position: relative;
             z-index: 2;
@@ -616,24 +668,27 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 25px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .footer-section h3 {
             color: var(--accent-gold);
             font-size: 1.1rem;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
-        .footer-section p, .footer-section a {
+        .footer-section p, 
+        .footer-section a {
             color: var(--text-muted);
             text-decoration: none;
             line-height: 1.6;
             font-size: 0.9rem;
         }
 
-        .footer-section a:hover {
+        .footer-section a:hover,
+        .footer-section a:focus {
             color: var(--accent-bright);
+            outline: none;
         }
 
         .copyright {
@@ -643,72 +698,46 @@
             font-size: 0.85rem;
         }
 
-        /* Desktop overrides */
-        @media (min-width: 769px) {
+        /* Large screens (tablets and up) */
+        @media (min-width: 768px) {
             .navbar {
                 top: 20px;
-                left: 50%;
-                right: auto;
-                transform: translateX(-50%);
                 padding: 15px 30px;
                 border-radius: 50px;
-            }
-
-            .navbar:hover {
-                transform: translateX(-50%) scale(1.02);
+                width: auto;
+                max-width: none;
             }
 
             .menu-links {
-                gap: 30px;
+                gap: 25px;
             }
 
             .menu-links a {
+                font-size: 0.95rem;
                 padding: 8px 16px;
-                font-size: 1rem;
+            }
+
+            .hero {
+                padding-top: 0;
+            }
+
+            .profile-section {
+                padding: 80px 20px;
             }
 
             .profile-grid {
-                grid-template-columns: 1fr 2fr;
-                gap: 60px;
+                grid-template-columns: 350px 1fr;
+                gap: 50px;
                 text-align: left;
             }
 
             .profile-card {
-                padding: 40px;
+                padding: 35px 25px;
+                order: 0;
             }
 
-            .profile-image {
-                width: 180px;
-                height: 180px;
-                margin-bottom: 30px;
-            }
-
-            .profile-name {
-                font-size: 2rem;
-                margin-bottom: 10px;
-            }
-
-            .profile-title {
-                font-size: 1.1rem;
-                margin-bottom: 20px;
-            }
-
-            .institution {
-                margin-bottom: 30px;
-            }
-
-            .institution img {
-                width: 35px;
-                height: 35px;
-            }
-
-            .institution span {
-                font-size: 1rem;
-            }
-
-            .social-link {
-                width: 50px;
-                height: 50px;
+            .bio-content {
+                order: 0;
             }
 
             .section-title {
@@ -719,110 +748,67 @@
                 justify-content: flex-start;
             }
 
-            .bio-text {
-                font-size: 1.1rem;
+            .research-section,
+            .publications-section {
+                padding: 80px 20px;
             }
 
             .research-grid {
                 grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-                gap: 40px;
-            }
-
-            .research-card:hover {
-                transform: translateY(-10px) scale(1.02);
+                gap: 35px;
             }
 
             .research-image {
-                height: 250px;
-            }
-
-            .research-content {
-                padding: 30px;
-            }
-
-            .research-content h3 {
-                font-size: 1.3rem;
-            }
-
-            .publication-card {
-                padding: 35px;
-            }
-
-            .publication-card:hover {
-                transform: translateX(10px);
-            }
-
-            .publication-meta {
-                flex-direction: row;
-                align-items: center;
+                height: 220px;
             }
 
             .footer-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 40px;
+                gap: 35px;
             }
         }
 
-        /* Large desktop */
-        @media (min-width: 1200px) {
+        /* Extra large screens */
+        @media (min-width: 1024px) {
+            .profile-section,
+            .research-section,
+            .publications-section {
+                padding: 100px 20px;
+            }
+
+            .profile-grid {
+                grid-template-columns: 400px 1fr;
+                gap: 60px;
+            }
+
             .research-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        /* Small mobile adjustments */
-        @media (max-width: 480px) {
-            .hero {
-                padding: 70px 15px 0;
-            }
-
-            .profile-section,
-            .research-section,
-            .publications-section {
-                padding: 50px 15px;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 250px;
-                padding: 14px 20px;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .menu-links {
-                gap: 6px;
-            }
-
-            .menu-links a {
-                padding: 5px 10px;
-                font-size: 0.8rem;
-            }
-
-            .navbar {
-                padding: 10px 15px;
-            }
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-            will-change: transform, opacity;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        /* Focus indicators */
+        a:focus,
+        button:focus {
+            outline: 2px solid var(--accent-bright);
+            outline-offset: 2px;
         }
 
         /* Custom scrollbar */
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
 
         ::-webkit-scrollbar-track {
@@ -831,7 +817,7 @@
 
         ::-webkit-scrollbar-thumb {
             background: var(--accent-bright);
-            border-radius: 3px;
+            border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
@@ -850,69 +836,16 @@
             transition: width 0.3s ease;
         }
 
-        /* Ensure content is visible by default */
-        .hero-content,
-        .profile-section,
-        .research-section,
-        .publications-section {
-            opacity: 1;
-            visibility: visible;
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            /* Already using dark theme */
         }
 
-        /* Override fade-in initial state for critical content */
-        .hero .fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Performance optimizations */
-        .hero, .profile-section, .research-section, .publications-section {
-            contain: layout style paint;
-        }
-
-        .parallax-element {
-            transform: translate3d(0, 0, 0);
-            will-change: transform;
-        }
-
-        /* Touch-friendly hover states for mobile */
-        @media (hover: none) and (pointer: coarse) {
-            .btn:hover,
-            .social-link:hover,
-            .research-card:hover,
-            .publication-card:hover {
-                transform: none;
-            }
-
-            .btn:active {
-                transform: scale(0.98);
-            }
-
-            .social-link:active {
-                transform: scale(0.95);
-            }
-        }
-
-        /* Improve text readability on small screens */
-        @media (max-width: 320px) {
-            .hero h1 {
-                font-size: 1.6rem;
-            }
-
-            .hero-subtitle {
-                font-size: 0.9rem;
-            }
-
-            .profile-title {
-                font-size: 0.9rem;
-            }
-
-            .research-content h3 {
-                font-size: 1.1rem;
-            }
-
-            .publication-title {
-                font-size: 1.1rem;
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --text-muted: #ffffff;
+                --glass-border: rgba(255, 255, 255, 0.5);
             }
         }
     </style>
@@ -921,11 +854,11 @@
     <div class="bg-animation"></div>
     <div class="loading-bar" id="loadingBar"></div>
 
-    <!-- Fixed Navigation for separate pages -->
-    <nav class="navbar">
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="menu-container">
             <ul class="menu-links">
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html" class="active" aria-current="page">Home</a></li>
                 <li><a href="research.html">Research</a></li>
                 <li><a href="publications.html">Publications</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -935,48 +868,58 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content fade-in">
+    <section id="home" class="hero" role="banner">
+        <div class="hero-content">
             <div class="hero-badge">
-                <i class="fas fa-atom"></i> Computational Chemistry Research
+                <i class="fas fa-atom" aria-hidden="true"></i> 
+                <span>Computational Chemistry Research</span>
             </div>
             <h1>उद्यमेन हि सिध्यन्ति कार्याणि न मनोरथैः</h1>
             <p class="hero-subtitle">
-                Advancing molecular understanding through computational chemistry and machine learning
+                Through effort, works are accomplished, not by wishes alone
             </p>
             <div class="hero-cta">
-                <a href="research.html" class="btn btn-primary">
-                    <i class="fas fa-microscope"></i> Explore Research
+                <a href="research.html" class="btn btn-primary" rel="noopener noreferrer">
+                    <i class="fas fa-microscope" aria-hidden="true"></i> 
+                    <span>Explore Research</span>
                 </a>
-                <a href="contact.html" class="btn btn-outline">
-                    <i class="fas fa-envelope"></i> Get in Touch
+                <a href="contact.html" class="btn btn-outline" rel="noopener noreferrer">
+                    <i class="fas fa-envelope" aria-hidden="true"></i> 
+                    <span>Get in Touch</span>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Profile Section -->
-    <section id="about" class="profile-section">
+    <section id="about" class="profile-section" role="main">
         <div class="profile-grid">
             <div class="profile-card">
                 <div class="profile-image">
-                    <img src="images/profile.png" alt="Dr. Anmol" onerror="this.style.display='none'">
+                    <img src="images/profile.png" alt="Anmol - Research Scholar" id="profileImg">
+                    <div class="profile-image-fallback" id="profileFallback">
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                    </div>
                 </div>
                 <h2 class="profile-name">Anmol</h2>
                 <p class="profile-title">Research Scholar in Computational Chemistry</p>
                 <div class="institution">
-                    <img src="./images/iitd_logo.png" alt="IIT Delhi" onerror="this.style.display='none'">
+                    <img src="./images/iitd_logo.png" alt="IIT Delhi logo" class="institution-logo" id="institutionLogo">
+                    <div class="institution-logo-fallback" id="institutionFallback"></div>
                     <span>Indian Institute of Technology Delhi</span>
                 </div>
                 <div class="social-links">
-                    <a href="https://github.com/anmol-compchem" target="_blank" class="social-link" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
+                    <a href="https://github.com/anmol-compchem" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub Profile">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                        <span class="sr-only">GitHub</span>
                     </a>
-                    <a href="https://scholar.google.com/citations?user=sMwC6hIAAAAJ&hl=en" target="_blank" class="social-link" aria-label="Google Scholar">
-                        <i class="fas fa-graduation-cap"></i>
+                    <a href="https://scholar.google.com/citations?user=sMwC6hIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Google Scholar Profile">
+                        <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sr-only">Google Scholar</span>
                     </a>
-                    <a href="https://orcid.org/0000-0002-0966-6496" target="_blank" class="social-link" aria-label="ORCID">
-                        <i class="fab fa-orcid"></i>
+                    <a href="https://orcid.org/0000-0002-0966-6496" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="ORCID Profile">
+                        <i class="fab fa-orcid" aria-hidden="true"></i>
+                        <span class="sr-only">ORCID</span>
                     </a>
                 </div>
             </div>
@@ -1012,66 +955,74 @@
 
     <!-- Research Section -->
     <section id="research" class="research-section">
-        <h2 class="section-title" style="text-align: center;">Research Highlights</h2>
+        <h2 class="section-title">Research Highlights</h2>
         <div class="research-grid">
-            <div class="research-card">
+            <article class="research-card">
                 <div class="research-image">
-                    <img src="./images/TOC_ES.png" alt="Enhanced Sampling Research" onerror="this.style.display='none'">
+                    <img src="./images/TOC_ES.png" alt="Enhanced Sampling Research Visualization" id="researchImg1">
+                    <div class="research-image-fallback" id="researchFallback1">
+                        <i class="fas fa-flask" aria-hidden="true"></i>
+                    </div>
                 </div>
                 <div class="research-content">
                     <h3>Chemical Reaction Modeling using Machine Learning Augmented Enhanced Sampling Simulations</h3>
                     <p>Developing advanced computational frameworks that combine machine learning with enhanced sampling techniques to understand complex chemical reaction mechanisms at the molecular level.</p>
                 </div>
-            </div>
+            </article>
 
-            <div class="research-card">
+            <article class="research-card">
                 <div class="research-image">
-                    <img src="./images/TOC_2.png" alt="Deep Potential Training" onerror="this.style.display='none'">
+                    <img src="./images/TOC_2.png" alt="Deep Potential Training Methodology" id="researchImg2">
+                    <div class="research-image-fallback" id="researchFallback2">
+                        <i class="fas fa-brain" aria-hidden="true"></i>
+                    </div>
                 </div>
                 <div class="research-content">
                     <h3>Data Efficient Deep Potential Training for Atomistic Simulations</h3>
                     <p>Creating innovative machine learning approaches to develop accurate interatomic potentials with minimal training data, enabling large-scale simulations with quantum mechanical accuracy.</p>
                 </div>
-            </div>
+            </article>
         </div>
     </section>
 
     <!-- Publications Section -->
     <section id="publications" class="publications-section">
-        <h2 class="section-title" style="text-align: center;">Key Publications</h2>
+        <h2 class="section-title">Key Publications</h2>
         <div class="publications-container">
-            <div class="publication-card">
+            <article class="publication-card">
                 <h3 class="publication-title">Unveiling the Role of Solvent in Solution Phase Chemical Reactions using Deep Potential-Based Enhanced Sampling Simulations</h3>
                 <p class="publication-authors">Anmol, Tarak Karmakar</p>
                 <div class="publication-meta">
                     <span class="publication-journal">
-                        <i class="fas fa-book-open"></i>
-                        Journal of Physical Chemistry Letters 2024
+                        <i class="fas fa-book-open" aria-hidden="true"></i>
+                        <span>Journal of Physical Chemistry Letters 2024</span>
                     </span>
-                    <a href="https://pubs.acs.org/doi/full/10.1021/acs.jpclett.4c02224" target="_blank" class="pub-link">
-                        <i class="fas fa-external-link-alt"></i> View Publication
+                    <a href="https://pubs.acs.org/doi/full/10.1021/acs.jpclett.4c02224" target="_blank" rel="noopener noreferrer" class="pub-link" aria-label="View publication on Journal of Physical Chemistry Letters">
+                        <i class="fas fa-external-link-alt" aria-hidden="true"></i> 
+                        <span>View Publication</span>
                     </a>
                 </div>
-            </div>
+            </article>
 
-            <div class="publication-card">
+            <article class="publication-card">
                 <h3 class="publication-title">Locality-Sensitive Hashing-Based Data Set Reduction for Deep Potential Training</h3>
                 <p class="publication-authors">Anmol, Anuj Kumar Sirohi, Neha, Jayadeva, Sandeep Kumar, Tarak Karmakar</p>
                 <div class="publication-meta">
                     <span class="publication-journal">
-                        <i class="fas fa-book-open"></i>
-                        Journal of Chemical Theory and Computation 2025
+                        <i class="fas fa-book-open" aria-hidden="true"></i>
+                        <span>Journal of Chemical Theory and Computation 2025</span>
                     </span>
-                    <a href="https://pubs.acs.org/doi/full/10.1021/acs.jctc.5c00366" target="_blank" class="pub-link">
-                        <i class="fas fa-external-link-alt"></i> View Publication
+                    <a href="https://pubs.acs.org/doi/full/10.1021/acs.jctc.5c00366" target="_blank" rel="noopener noreferrer" class="pub-link" aria-label="View publication on Journal of Chemical Theory and Computation">
+                        <i class="fas fa-external-link-alt" aria-hidden="true"></i> 
+                        <span>View Publication</span>
                     </a>
                 </div>
-            </div>
+            </article>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="footer-content">
             <div class="footer-grid">
                 <div class="footer-section">
@@ -1085,188 +1036,177 @@
                 <div class="footer-section">
                     <h3>Connect</h3>
                     <p>
-                        <a href="https://github.com/anmol-compchem">GitHub</a> •
-                        <a href="https://scholar.google.com/citations?user=sMwC6hIAAAAJ&hl=en">Google Scholar</a> •
-                        <a href="https://orcid.org/0000-0002-0966-6496">ORCID</a>
+                        <a href="https://github.com/anmol-compchem" target="_blank" rel="noopener noreferrer">GitHub</a> •
+                        <a href="https://scholar.google.com/citations?user=sMwC6hIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a> •
+                        <a href="https://orcid.org/0000-0002-0966-6496" target="_blank" rel="noopener noreferrer">ORCID</a>
                     </p>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Anmol. All rights reserved. Designed for optimal mobile experience.</p>
+                <p>&copy; 2025 Anmol. All rights reserved. Built with modern web technologies.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Loading bar animation
-        window.addEventListener('load', function() {
-            const loadingBar = document.getElementById('loadingBar');
-            loadingBar.style.width = '100%';
-            setTimeout(() => {
-                loadingBar.style.opacity = '0';
-                setTimeout(() => {
-                    loadingBar.style.display = 'none';
-                }, 300);
-            }, 500);
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Add touch event handling for mobile
-        document.addEventListener('touchstart', function() {}, {passive: true});
-
-        // Navbar background opacity on scroll
-        let lastScrollTop = 0;
-        const navbar = document.querySelector('.navbar');
-
-        window.addEventListener('scroll', function() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            // Change navbar background based on scroll position
-            if (scrollTop > 50) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.15)';
-                navbar.style.backdropFilter = 'blur(25px)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.1)';
-                navbar.style.backdropFilter = 'blur(20px)';
-            }
-
-            lastScrollTop = scrollTop;
-        }, {passive: true});
-
-        // Optimize animations for mobile
-        const isMobile = window.innerWidth <= 768;
-        
-        if (isMobile) {
-            // Reduce animation complexity on mobile for better performance
-            document.querySelectorAll('.research-card, .publication-card').forEach(card => {
-                card.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
-            });
+        // Safe image loading with fallbacks
+        function handleImageError(imgElement, fallbackElement) {
+            imgElement.style.opacity = '0';
+            fallbackElement.style.opacity = '1';
         }
 
-        // Handle orientation change
-        window.addEventListener('orientationchange', function() {
-            setTimeout(function() {
-                // Recalculate layout after orientation change
-                window.scrollTo(0, 0);
-            }, 100);
+        function handleImageLoad(imgElement, fallbackElement) {
+            imgElement.style.opacity = '1';
+            fallbackElement.style.opacity = '0';
+        }
+
+        // Initialize image handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            // Profile image
+            const profileImg = document.getElementById('profileImg');
+            const profileFallback = document.getElementById('profileFallback');
+            
+            if (profileImg && profileFallback) {
+                profileImg.addEventListener('error', () => handleImageError(profileImg, profileFallback));
+                profileImg.addEventListener('load', () => handleImageLoad(profileImg, profileFallback));
+                
+                // Check if image is already loaded (cached)
+                if (profileImg.complete) {
+                    if (profileImg.naturalWidth === 0) {
+                        handleImageError(profileImg, profileFallback);
+                    } else {
+                        handleImageLoad(profileImg, profileFallback);
+                    }
+                }
+            }
+
+            // Institution logo
+            const institutionLogo = document.getElementById('institutionLogo');
+            const institutionFallback = document.getElementById('institutionFallback');
+            
+            if (institutionLogo && institutionFallback) {
+                institutionLogo.addEventListener('error', () => {
+                    institutionLogo.style.display = 'none';
+                    institutionFallback.style.display = 'block';
+                });
+                institutionLogo.addEventListener('load', () => {
+                    institutionLogo.style.display = 'block';
+                    institutionFallback.style.display = 'none';
+                });
+            }
+
+            // Research images
+            const researchImages = [
+                { img: 'researchImg1', fallback: 'researchFallback1' },
+                { img: 'researchImg2', fallback: 'researchFallback2' }
+            ];
+
+            researchImages.forEach(({ img, fallback }) => {
+                const imgElement = document.getElementById(img);
+                const fallbackElement = document.getElementById(fallback);
+                
+                if (imgElement && fallbackElement) {
+                    imgElement.addEventListener('error', () => handleImageError(imgElement, fallbackElement));
+                    imgElement.addEventListener('load', () => handleImageLoad(imgElement, fallbackElement));
+                    
+                    if (imgElement.complete) {
+                        if (imgElement.naturalWidth === 0) {
+                            handleImageError(imgElement, fallbackElement);
+                        } else {
+                            handleImageLoad(imgElement, fallbackElement);
+                        }
+                    }
+                }
+            });
+
+            // Loading bar animation
+            const loadingBar = document.getElementById('loadingBar');
+            if (loadingBar) {
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 15;
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            loadingBar.style.opacity = '0';
+                        }, 200);
+                    }
+                    loadingBar.style.width = progress + '%';
+                }, 100);
+            }
+
+            // Smooth scrolling for anchor links
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+            anchorLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Keyboard navigation support
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('keyboard-navigation');
+                }
+            });
+
+            document.addEventListener('mousedown', function() {
+                document.body.classList.remove('keyboard-navigation');
+            });
+
+            // Performance optimization: Intersection Observer for animations
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-in');
+                        }
+                    });
+                }, observerOptions);
+
+                // Observe cards for animation
+                const cards = document.querySelectorAll('.research-card, .publication-card, .profile-card');
+                cards.forEach(card => observer.observe(card));
+            }
+
+            // Service Worker registration for better performance (optional)
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(registration => {
+                            console.log('SW registered: ', registration);
+                        })
+                        .catch(registrationError => {
+                            console.log('SW registration failed: ', registrationError);
+                        });
+                });
+            }
         });
 
-        // Prevent zoom on double tap for iOS Safari
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(event) {
-            const now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
-
-        // Add keyboard navigation support
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Tab') {
-                document.body.classList.add('keyboard-navigation');
-            }
-        });
-
-        document.addEventListener('mousedown', function() {
-            document.body.classList.remove('keyboard-navigation');
+        // Handle resize events efficiently
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                // Recalculate any position-dependent elements if needed
+                console.log('Window resized');
+            }, 250);
         });
     </script>
-
-    <style>
-        /* Focus styles for keyboard navigation */
-        .keyboard-navigation .menu-links a:focus,
-        .keyboard-navigation .btn:focus,
-        .keyboard-navigation .social-link:focus,
-        .keyboard-navigation .pub-link:focus {
-            outline: 2px solid var(--accent-gold);
-            outline-offset: 2px;
-        }
-
-        /* Reduce motion for users who prefer it */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
-            .bg-animation::before {
-                animation: none;
-            }
-
-            .hero-badge {
-                animation: none;
-            }
-
-            .profile-card::before {
-                animation: none;
-            }
-        }
-
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-            :root {
-                --glass-bg: rgba(255, 255, 255, 0.2);
-                --glass-border: rgba(255, 255, 255, 0.4);
-                --text-muted: #d0d0d0;
-            }
-        }
-
-        /* Print styles */
-        @media print {
-            .navbar,
-            .bg-animation,
-            .loading-bar {
-                display: none !important;
-            }
-
-            body {
-                background: white !important;
-                color: black !important;
-            }
-
-            .hero,
-            .profile-section,
-            .research-section,
-            .publications-section {
-                page-break-inside: avoid;
-            }
-        }
-    </style>
 </body>
 </html>
